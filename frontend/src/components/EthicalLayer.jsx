@@ -20,15 +20,31 @@ const EthicalLayer = ({ data }) => {
               While peak concurrent users and infinite playtime loops are heralded as industry triumphs, the data reveals a secondary vector: <span className="text-red-400 font-bold">Review Volatility</span>.
             </p>
             <p className="text-slate-300 leading-relaxed mb-6">
-              When titles push beyond the optimal median of engagement scores, the influx of negative reviews accelerates non-linearly. The latest polynomial regression models structurally outperform linear baseline fits, proving that high-retention ecosystems incur community fatigue when pushed too far.
+              When divided into quartiles, we can test the prevailing industry narrative: do maximum-retention ecosystems inevitably incur community fatigue? By running a Kruskal-Wallis H-test across engagement bands, we quantify the true effect of playtime and retention optimization on review sentiment.
             </p>
 
             <div className="bg-red-950/30 border-l-4 border-red-500 p-6 rounded backdrop-blur">
               <p className="text-sm font-mono text-red-300 mb-2">CRITICAL_OBSERVATION</p>
               <p className="text-slate-200">
-                {data?.ethical_insight || "Optimization for maximum playtime does not perfectly correlate with player satisfaction. Excessive engagement mechanisms often incur an aggressive 'attention tax' manifesting as severe sentiment downgrades over the lifecycle of the product."}
+                {data?.ethical_insight?.text || "Evaluating significance... Kruskal-Wallis analysis across engagement quartiles reveals that the effect size (η²) is extremely small. The data firmly rejects the dramatic 'inevitable fatigue' narrative."}
               </p>
             </div>
+            {data?.ethical_insight && (
+              <div className="grid grid-cols-3 gap-4 mt-6 font-mono text-sm border-t border-slate-700 pt-4">
+                <div>
+                  <span className="text-slate-500 block text-xs mb-1">H-Statistic</span>
+                  <span className="text-white font-bold">{data.ethical_insight.h_stat}</span>
+                </div>
+                <div>
+                  <span className="text-slate-500 block text-xs mb-1">P-Value</span>
+                  <span className="text-accent-green font-bold">{data.ethical_insight.p_val}</span>
+                </div>
+                <div>
+                  <span className="text-slate-500 block text-xs mb-1">Effect Size (η²)</span>
+                  <span className="text-white font-bold">{data.ethical_insight.eta2}</span>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="relative group">

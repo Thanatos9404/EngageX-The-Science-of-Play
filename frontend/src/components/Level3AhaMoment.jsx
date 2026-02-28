@@ -23,9 +23,25 @@ const Level3AhaMoment = ({ data, apiUrl }) => {
           </h3>
 
           <div className="bg-slate-900/80 border-l-4 border-accent-green p-6 rounded-r mb-12 backdrop-blur max-w-4xl">
-            <p className="text-slate-300 text-lg leading-relaxed font-medium">
+            <p className="text-slate-300 text-lg leading-relaxed font-medium mb-4">
               Segmenting the dataset longitudinally reveals the true engineering shift. The baseline attention span for standalone Premium titles has remained functionally flat. The industry's massive aggregate engagement spikes over the last decade are almost entirely attributable to Free-to-Play models and games sustaining high DLC density.
             </p>
+            {data?.cohort_slopes && (
+              <div className="grid grid-cols-2 gap-6 pt-4 border-t border-slate-700 font-mono text-sm">
+                <div>
+                  <h4 className="text-secondary mb-2 font-bold uppercase tracking-wider">Free-to-Play Ecosystems</h4>
+                  <p className="flex justify-between border-b border-slate-800 pb-1"><span>Slope (β)</span> <span className="text-white">+{data.cohort_slopes.f2p_slope} /yr</span></p>
+                  <p className="flex justify-between border-b border-slate-800 py-1"><span>Variance (R²)</span> <span className="text-white">{data.cohort_slopes.f2p_r2}</span></p>
+                  <p className="flex justify-between py-1"><span>P-Value</span> <span className="text-white">{data.cohort_slopes.f2p_pval}</span></p>
+                </div>
+                <div>
+                  <h4 className="text-slate-400 mb-2 font-bold uppercase tracking-wider">Premium Standalone</h4>
+                  <p className="flex justify-between border-b border-slate-800 pb-1"><span>Slope (β)</span> <span className="text-white">{data.cohort_slopes.b2p_slope > 0 ? '+' : ''}{data.cohort_slopes.b2p_slope} /yr</span></p>
+                  <p className="flex justify-between border-b border-slate-800 py-1"><span>Variance (R²)</span> <span className="text-white">{data.cohort_slopes.b2p_r2}</span></p>
+                  <p className="flex justify-between py-1"><span>P-Value</span> <span className="text-white">{data.cohort_slopes.b2p_pval}</span></p>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="relative group w-full">

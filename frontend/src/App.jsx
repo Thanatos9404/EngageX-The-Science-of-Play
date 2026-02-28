@@ -8,6 +8,7 @@ import Level3AhaMoment from './components/Level3AhaMoment';
 import PredictionCalculator from './components/PredictionCalculator';
 import EthicalLayer from './components/EthicalLayer';
 import SummaryScreen from './components/SummaryScreen';
+import SurvivalCurves from './components/SurvivalCurves';
 import Loader from './components/Loader';
 
 // Assuming API runs locally on port 5000
@@ -56,14 +57,14 @@ function App() {
         </div>
 
         <nav className="flex flex-col gap-6 text-sm font-bold uppercase tracking-wide">
-          <a href="#hero" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Mission Start</a>
+          <a href="#hero" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Verdict</a>
+          <a href="#aha" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Divergence (Aha)</a>
+          <a href="#survival" className="text-slate-400 hover:text-secondary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Survival Analysis</a>
+          <a href="#comparisons" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Economics (Level 02)</a>
+          <a href="#calculator" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> DL Models</a>
+          <a href="#ethics" className="text-slate-400 hover:text-red-500 transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Volatility (Limits)</a>
+          <a href="#summary" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Player Impact</a>
           <a href="#methodology" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Methodology</a>
-          <a href="#trends" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Level 01: Trends</a>
-          <a href="#comparisons" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Level 02: Economics</a>
-          <a href="#aha" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Level 03: The Insight</a>
-          <a href="#calculator" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Calculator</a>
-          <a href="#ethics" className="text-slate-400 hover:text-red-500 transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Level 04: Ethics</a>
-          <a href="#summary" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Mission Report</a>
         </nav>
 
         <div className="mt-auto">
@@ -83,18 +84,17 @@ function App() {
       {/* Main Content Sections (offset by sidebar width on large screens) */}
       <main className="relative z-10 w-full lg:ml-64 scroll-smooth">
         <section id="hero"><HeroLevel data={insights} /></section>
-        <section id="methodology"><MethodologySection data={insights} /></section>
-        <section id="trends"><Level1Trends data={insights} apiUrl={API_URL} /></section>
-        <section id="comparisons"><Level2Comparisons data={insights} apiUrl={API_URL} /></section>
         <section id="aha"><Level3AhaMoment data={insights} apiUrl={API_URL} /></section>
+        <section id="survival"><SurvivalCurves data={insights} apiUrl={API_URL} /></section>
+        <section id="comparisons"><Level2Comparisons data={insights} apiUrl={API_URL} /></section>
 
         <section id="calculator" className="py-20 px-6 max-w-4xl mx-auto">
           <PredictionCalculator apiUrl={API_URL} />
         </section>
 
         <section id="ethics"><EthicalLayer data={insights} /></section>
-
         <section id="summary"><SummaryScreen data={insights} apiUrl={API_URL} /></section>
+        <section id="methodology"><MethodologySection data={insights} /></section>
 
         {/* Footer */}
         <footer className="relative z-20 bg-background-dark border-t border-primary/10 py-12 px-6">
