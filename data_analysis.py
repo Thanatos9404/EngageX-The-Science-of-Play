@@ -173,7 +173,7 @@ def generate_improved_plots(df):
     
     fig_owner = px.bar(tier_engagement, x='audience_tier', y='engagement_score', 
                        title="Engagement Scaling by Audience Size",
-                       color='engagement_score', color_continuous_scale="mako", text_auto='.1f')
+                       color='engagement_score', color_continuous_scale="viridis", text_auto='.1f')
     fig_owner.update_layout(xaxis_title="Audience Tier", yaxis_title="Average Engagement Score",
                             margin=dict(l=40, r=40, t=60, b=40))
     with open("frontend/public/assets/owner_impact.json", "w") as f:
@@ -187,7 +187,7 @@ def generate_correlation_and_scatter(df):
     available_cols = [c for c in cols if c in df.columns]
     corr_df = df[available_cols].corr()
     
-    fig_corr = px.imshow(corr_df, text_auto=".2f", aspect="auto", color_continuous_scale="rdylbu_r",
+    fig_corr = px.imshow(corr_df, text_auto=".2f", aspect="auto", color_continuous_scale="rdbu_r",
                          title="Multivariate Feature Correlation Matrix")
     fig_corr.update_layout(margin=dict(l=40, r=40, t=60, b=40))
     with open("frontend/public/assets/correlation_heatmap.json", "w") as f:
@@ -207,8 +207,7 @@ def generate_correlation_and_scatter(df):
     dlc_filtered = df[df['dlc_count'] <= df['dlc_count'].quantile(0.99)]
     fig_dlc = px.scatter(dlc_filtered, x='dlc_count', y='engagement_score', trendline="ols",
                          title="Ecosystem Expansion: DLC Count vs Core Retention",
-                         color_discrete_sequence=['#38bdf8'], opacity=0.3)
-    fig_dlc.update_traces(trendline_color_override="#f472b6")
+                         color_discrete_sequence=['#38bdf8'], opacity=0.3, trendline_color_override="#f472b6")
     fig_dlc.update_layout(xaxis_title="Total Distributed DLC Packages", yaxis_title="Engagement Score",
                           margin=dict(l=40, r=40, t=60, b=40))
     with open("frontend/public/assets/dlc_impact.json", "w") as f:

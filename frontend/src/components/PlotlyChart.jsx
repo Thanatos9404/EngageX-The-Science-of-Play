@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Plot from 'react-plotly.js';
+import Plotly from 'plotly.js-dist';
+import createPlotlyComponent from 'react-plotly.js/factory';
+const Plot = createPlotlyComponent(Plotly);
 import { Oval } from 'react-loader-spinner';
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";

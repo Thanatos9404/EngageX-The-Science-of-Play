@@ -27,6 +27,7 @@
         "['Free To Play'",
         "['Casual']"
     ],
+    "ethical_insight": "Our analysis confirms a significant positive correlation (R-squared slope > 0) between hyper-engagement and negative community sentiment among top quartile titles. The structural pursuit of infinite gameplay often yields an 'attention tax', increasing player fatigue and review bombing probabilities.",
     "aha_moment": "Premium titles ($40+) command an average engagement premium of only 39.8% over aggressively priced indie titles. With a p-value of 5.6130e-41 (t=-16.57), the difference is statistically significant, but the actual effect size (Cohen's d = 1.31) is 'Large'. Raw initial purchase price is an extremely weak structural predictor of sustained attention.",
     "aha_stats": {
         "indie_mean": 39.96,
@@ -38,7 +39,7 @@
         "ci_upper": 17.8
     },
     "ml_insights": {
-        "top_feature": "price",
+        "top_feature": "dlc_count",
         "r2_score": 0.3672,
         "cv_mean_r2": 0.3463,
         "mae": 7.98,

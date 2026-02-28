@@ -11,9 +11,10 @@ dist/
 build/
 .npm/
 
-# Datasets (Avoid pushing large CSVs if they exceed GitHub limits or aren't meant for source control)
+# Datasets & ML Models
 dataset/
 *.csv
+*.joblib
 
 # OS metadata
 .DS_Store
