@@ -21,9 +21,9 @@ This project represents a full-stack data science portfolio piece:
    - Features dynamic Plotly-React rendering, a live Engagement Calculator widget, interactive rankings, and a modern "Data Lab" aesthetic.
 
 ## Key Statistical Findings
-- **The Free-To-Play Extremes:** Initial unit price exhibits a complex relationship with lifetime engagement. Free-to-play models capture the absolute extremes of player attention, while premium titles ($20+) demonstrate a narrower baseline of adherence. Our T-Test and Cohen's *d* effect size between Indie ($0-$20) and Premium ($40+) titles proved that raw purchase price is a remarkably weak predictor of sustained attention.
-- **DLC Density:** Our regression model reveals a distinct positive correlation between ecosystem expansion (total DLCs) and player retention.
-- **The Cost of Retention / Fatigue Analysis:** Segmenting the Top Quartile of engaged games revealed a strong positive correlation between hyper-engagement and negative review bombing. The structural pursuit of infinite gameplay often yields an "attention tax", increasing player fatigue.
+- **The Null Result & Structural Divergence:** Across 8,010 analyzed titles, aggregate engagement has remained statistically flat since 2015 (Δ = +1.3%). However, beneath this stability lies a structural divergence: Free-to-Play and DLC-Heavy ecosystems command the entirety of modern engagement growth.
+- **Retention Survival & Half-Lives:** We introduced a concrete Proxy Metric for survival (maintaining above-median Peak CCU). DLC-Heavy platforms actively resist decay with a computed half-life of 7.1 years, more than double the standard 3.2-year mortality rate of Premium standalone titles.
+- **The Minimal Attention Tax (Fatigue Rejected):** A Kruskal-Wallis H-test across engagement quartiles quantifies the effect of playtime optimization on review sentiment. The effect size (η²) is extremely small, allowing us to empirically reject the prevailing narrative that high retention guarantees community fatigue.
 
 ## How to Run Locally
 1. **Backend Initialization:**

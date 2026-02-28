@@ -49,6 +49,15 @@
         "b2p_r2": 0.82,
         "b2p_pval": "0.0001"
     },
+    "survival_stats": {
+        "half_lives": {
+            "Free-to-Play": 5.5,
+            "DLC-Heavy": 7.7,
+            "Buy-to-Play": 4.3
+        },
+        "chi2": 220.7,
+        "p_val": "1.21e-48"
+    },
     "aha_moment": "Premium titles ($40+) command an average engagement premium of only 39.8% over aggressively priced indie titles. With a p-value of 5.6130e-41 (t=-16.57), the difference is statistically significant, but the actual effect size (Cohen's d = 1.31) is 'Large'. Raw initial purchase price is an extremely weak structural predictor of sustained attention.",
     "aha_stats": {
         "indie_mean": 39.96,

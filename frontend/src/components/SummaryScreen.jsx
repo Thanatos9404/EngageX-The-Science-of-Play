@@ -34,7 +34,7 @@ const SummaryScreen = ({ data, apiUrl }) => {
                                 <span className="text-accent-green font-bold">»</span> <span className="text-white font-medium">Pricing Anomalies:</span> Premium tiers do not guarantee superior attention spans; F2P models exhibit statistically significant (p &lt; 0.05) retention advantages.
                             </li>
                             <li className="flex items-start gap-3">
-                                <span className="text-accent-green font-bold">»</span> <span className="text-white font-medium">The Fatigue Tax:</span> Pushing engagement scores beyond the 75th percentile yields a measurable degradation in community sentiment.
+                                <span className="text-accent-green font-bold">»</span> <span className="text-white font-medium">Fatigue Rejected:</span> High engagement intensity does not produce systematic community fatigue. Sentiment degradation is not structurally driven by aggressive retention mechanics.
                             </li>
                             <li className="flex items-start gap-3">
                                 <span className="text-accent-green font-bold">»</span> <span className="text-white font-medium">Predictability:</span> ML models indicate post-launch expansions are the highest-weight feature in extending lifetime value.

@@ -262,6 +262,20 @@ def generate_correlation_and_scatter(df):
                          color_discrete_sequence=['#38bdf8'], opacity=0.3, trendline_color_override="#f472b6")
     fig_dlc.update_layout(xaxis_title="Total Distributed DLC Packages", yaxis_title="Engagement Score",
                           yaxis_rangemode="tozero", margin=dict(l=40, r=40, t=60, b=40))
+                          
+    x_val = dlc_filtered['dlc_count']
+    y_val = dlc_filtered['engagement_score']
+    slope, intercept, r_value, p_value, std_err = stats.linregress(x_val, y_val)
+    ci_margin = 1.96 * std_err
+    
+    txt = f"β: {slope:.2f} ± {ci_margin:.2f}<br>R²: {r_value**2:.3f}<br>p: {p_value:.2e}"
+    fig_dlc.add_annotation(
+        x=0.02, y=0.98, xref="paper", yref="paper",
+        text=txt, showarrow=False,
+        bgcolor="rgba(0,0,0,0.8)", bordercolor="white", borderwidth=1,
+        font=dict(family="monospace", size=11, color="#38bdf8"), align="left"
+    )
+
     with open("frontend/public/assets/dlc_impact.json", "w") as f:
         f.write(fig_dlc.to_json())
     
@@ -409,8 +423,50 @@ def generate_survival_curves(df):
                        title="Cohort Retention Decay (Games maintaining Peak CCU > Median)",
                        markers=True, line_shape='spline')
     fig_surv.update_layout(yaxis_rangemode="tozero", hovermode="x unified", margin=dict(l=40, r=40, t=60, b=40))
+    
+    fig_surv.add_annotation(
+        x=2, y=40, text="Elden Ring / Hogwarts Legacy<br>(Premium Spike, Fast Decay)",
+        showarrow=True, arrowhead=2, arrowsize=1, arrowwidth=1, arrowcolor="#64748b",
+        font=dict(size=10, color="#cbd5e1"), ax=40, ay=30
+    )
+    fig_surv.add_annotation(
+        x=7, y=60, text="Destiny 2 / Warframe<br>(DLC-Heavy Sustained)",
+        showarrow=True, arrowhead=2, arrowsize=1, arrowwidth=1, arrowcolor="#00ffcc",
+        font=dict(size=10, color="#00ffcc"), ax=-40, ay=-30
+    )
+    
     with open("frontend/public/assets/survival_curves.json", "w") as f:
         f.write(fig_surv.to_json())
+        
+    half_lives = {}
+    for c in ['Free-to-Play', 'DLC-Heavy', 'Buy-to-Play']:
+        c_surv = surv_df[surv_df['Cohort'] == c].sort_values('Age (Years)')
+        if len(c_surv) > 1 and c_surv['Survival Rate (%)'].min() < 50:
+            x = c_surv['Survival Rate (%)'].values[::-1]
+            y = c_surv['Age (Years)'].values[::-1]
+            hl = float(np.interp(50, x, y))
+            half_lives[c] = round(hl, 1)
+        else:
+            half_lives[c] = ">10.0" if c_surv['Survival Rate (%)'].max() >= 50 else "<1.0"
+            
+    c_table = []
+    for c in ['Free-to-Play', 'DLC-Heavy', 'Buy-to-Play']:
+        c_data = df_cohort[(df_cohort['age_years'] >= 5) & (df_cohort['cohort'] == c)]
+        if len(c_data) > 0:
+            surv = len(c_data[c_data['peak_ccu'] > ccu_threshold])
+            dead = len(c_data) - surv
+            c_table.append([surv, dead])
+            
+    if len(c_table) == 3:
+        chi2_stat, p_val, dof, ex = stats.chi2_contingency(c_table)
+    else:
+        chi2_stat, p_val = 0, 1.0
+        
+    insights_data['survival_stats'] = {
+        'half_lives': half_lives,
+        'chi2': round(chi2_stat, 1),
+        'p_val': f"{p_val:.2e}"
+    }
 
 def find_aha_moment_stats(df):
     print("Calculating Statistical Insights...")
@@ -574,13 +630,15 @@ def main():
         
         # Generate Top 20 Plotly Horizontal Bar Chart
         # Plotly puts the first item at the bottom of the y-axis, so we sort ascending for the top 20
-        top_20_df = df.nlargest(20, 'engagement_score').sort_values(by='engagement_score', ascending=True)
-        fig_top20 = px.bar(top_20_df, x='engagement_score', y='name', orientation='h', 
+        top_20_df = df.nlargest(20, 'engagement_score').sort_values(by='engagement_score', ascending=True).copy()
+        
+        # Wrap names for clean display
+        top_20_df['name_wrapped'] = top_20_df['name'].apply(lambda x: '<br>'.join([x[i:i+30] for i in range(0, len(x), 30)]) if len(x)>30 else x)
+
+        fig_top20 = px.bar(top_20_df, x='engagement_score', y='name_wrapped', orientation='h', 
                            title="Top 20 Engagement Anomalies", color='engagement_score', color_continuous_scale="blues")
-        fig_top20.update_layout(xaxis_title="PCA Engagement Score", yaxis_title="", margin=dict(l=20, r=20, t=60, b=40))
-        # Truncate long names for y-axis
-        fig_top20.update_yaxes(ticktext=[name[:30] + '...' if len(name) > 30 else name for name in top_20_df['name']], 
-                               tickvals=top_20_df['name'])
+        
+        fig_top20.update_layout(xaxis_title="PCA Engagement Score", yaxis_title="", margin=dict(l=250, r=20, t=60, b=40))
         
         with open("frontend/public/assets/top_20_games.json", "w") as f:
             f.write(fig_top20.to_json())

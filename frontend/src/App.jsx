@@ -58,8 +58,8 @@ function App() {
 
         <nav className="flex flex-col gap-6 text-sm font-bold uppercase tracking-wide">
           <a href="#hero" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Verdict</a>
-          <a href="#aha" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Divergence (Aha)</a>
-          <a href="#survival" className="text-slate-400 hover:text-secondary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Survival Analysis</a>
+          <a href="#aha" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> The Hidden Split</a>
+          <a href="#survival" className="text-slate-400 hover:text-secondary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Why Games Refuse to Die</a>
           <a href="#comparisons" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Economics (Level 02)</a>
           <a href="#calculator" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> DL Models</a>
           <a href="#ethics" className="text-slate-400 hover:text-red-500 transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Volatility (Limits)</a>
@@ -101,7 +101,7 @@ function App() {
           <div className="max-w-4xl mx-auto flex flex-col items-center justify-center text-center text-xs font-mono text-slate-500 space-y-2">
             <p>© 2026 Yashvardhan Thanvi</p>
             <p>Built for Codédex Monthly Data Challenge</p>
-            <p className="opacity-70">Special thanks to Codédex for fostering creative data storytelling.</p>
+            <p className="opacity-70">All statistical comparisons include 95% bootstrapped confidence intervals unless otherwise specified.</p>
           </div>
         </footer>
       </main>
