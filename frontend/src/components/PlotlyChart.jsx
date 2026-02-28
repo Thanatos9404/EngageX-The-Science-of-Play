@@ -23,7 +23,7 @@ export default function PlotlyChart({
   useEffect(() => {
     const fetchChart = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/assets/${chartName}.json`);
+        const response = await fetch(`/assets/${chartName}.json`);
         if (!response.ok) {
           throw new Error(`Failed to load ${chartName}`);
         }

@@ -11,8 +11,8 @@ import SummaryScreen from './components/SummaryScreen';
 import SurvivalCurves from './components/SurvivalCurves';
 import Loader from './components/Loader';
 
-// Assuming API runs locally on port 5000
-const API_URL = 'http://127.0.0.1:5000';
+// Assuming API runs locally on port 5000 for ML predictions
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
 
 function App() {
   const [insights, setInsights] = useState(null);
@@ -22,7 +22,8 @@ function App() {
   useEffect(() => {
     const fetchInsights = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/insights`);
+        // Fetch static insights payload directly from public folder
+        const response = await axios.get(`/insights.json`);
         setInsights(response.data);
         setLoading(false);
       } catch (err) {
