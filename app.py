@@ -6,8 +6,18 @@ import numpy as np
 import os
 
 app = Flask(__name__)
-# Enable CORS for the React frontend (running on Vite's default port or any port)
-CORS(app)
+
+# Explicitly allow all Vercel deployments and local dev
+allowed_origins = [
+    "https://engagex-yt.vercel.app",
+    "https://engagex-drab.vercel.app",
+    "https://engagex-api.onrender.com",
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://127.0.0.1:5173",
+    "http://127.0.0.1:5000",
+]
+CORS(app, origins=allowed_origins, supports_credentials=True)
 
 # Load the trained machine learning model and scaler
 try:
@@ -62,9 +72,12 @@ def predict_engagement():
 
 @app.route('/', methods=['GET'])
 def root():
-    return jsonify({"message": "Data Story API is running."})
+    return jsonify({"status": "ok", "message": "EngageX API is live."})
+
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({"status": "healthy"}), 200
 
 if __name__ == '__main__':
-    # Use Render's dynamic PORT env var in production, fallback to 5000 locally
     port = int(os.environ.get('PORT', 5000))
     app.run(debug=False, host='0.0.0.0', port=port)

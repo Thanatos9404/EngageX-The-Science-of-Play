@@ -11,8 +11,8 @@ import SummaryScreen from './components/SummaryScreen';
 import SurvivalCurves from './components/SurvivalCurves';
 import Loader from './components/Loader';
 
-// Assuming API runs locally on port 5000 for ML predictions
-const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
+// API URL: Vercel env var > Render live URL > localhost fallback
+const API_URL = import.meta.env.VITE_API_URL || 'https://engagex-api.onrender.com';
 
 function App() {
   const [insights, setInsights] = useState(null);
