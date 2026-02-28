@@ -5,6 +5,8 @@ import MethodologySection from './components/MethodologySection';
 import Level1Trends from './components/Level1Trends';
 import Level2Comparisons from './components/Level2Comparisons';
 import Level3AhaMoment from './components/Level3AhaMoment';
+import PredictionCalculator from './components/PredictionCalculator';
+import EthicalLayer from './components/EthicalLayer';
 import SummaryScreen from './components/SummaryScreen';
 import Loader from './components/Loader';
 
@@ -59,6 +61,8 @@ function App() {
           <a href="#trends" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Level 01: Trends</a>
           <a href="#comparisons" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Level 02: Economics</a>
           <a href="#aha" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Level 03: The Insight</a>
+          <a href="#calculator" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Calculator</a>
+          <a href="#ethics" className="text-slate-400 hover:text-red-500 transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-red-900 border border-red-500"></span> Level 04: Ethics</a>
           <a href="#summary" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Mission Report</a>
         </nav>
 
@@ -83,6 +87,13 @@ function App() {
         <section id="trends"><Level1Trends data={insights} apiUrl={API_URL} /></section>
         <section id="comparisons"><Level2Comparisons data={insights} apiUrl={API_URL} /></section>
         <section id="aha"><Level3AhaMoment data={insights} apiUrl={API_URL} /></section>
+
+        <section id="calculator" className="py-20 px-6 max-w-4xl mx-auto">
+          <PredictionCalculator apiUrl={API_URL} />
+        </section>
+
+        <section id="ethics"><EthicalLayer data={insights} /></section>
+
         <section id="summary"><SummaryScreen data={insights} apiUrl={API_URL} /></section>
 
         {/* Footer */}

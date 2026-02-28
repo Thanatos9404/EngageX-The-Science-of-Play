@@ -1,4 +1,5 @@
 import React from 'react';
+import PlotlyChart from './PlotlyChart';
 
 const Level1Trends = ({ data, apiUrl }) => {
   return (
@@ -27,10 +28,10 @@ const Level1Trends = ({ data, apiUrl }) => {
             </div>
 
             <div className="bg-background-dark/80 border border-slate-700 rounded-lg p-6 backdrop-blur">
-              <img
-                src={`${apiUrl}/api/assets/owner_impact.png`}
-                alt="Audience Size vs Engagement"
-                className="w-full h-auto rounded border border-slate-700"
+              <PlotlyChart
+                chartName="owner_impact"
+                title=""
+                className="w-full h-auto rounded border-none border-0 bg-transparent p-0"
               />
               <p className="text-slate-400 text-sm mt-4 italic text-center">
                 Engagement scales non-linearly with audience size. Core and Hit tiers see dramatically higher sustained attention than Niche titles.
@@ -49,10 +50,10 @@ const Level1Trends = ({ data, apiUrl }) => {
                 </div>
                 <span className="text-slate-500 text-xs font-mono">temporal_analysis.exe</span>
               </div>
-              <img
-                src={`${apiUrl}/api/assets/time_series.png`}
-                alt="Time Series of Engagement"
-                className="w-full h-auto rounded"
+              <PlotlyChart
+                chartName="time_series"
+                title=""
+                className="w-full h-auto rounded border-none border-0 bg-transparent p-0"
               />
             </div>
           </div>

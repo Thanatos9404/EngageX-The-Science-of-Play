@@ -1,8 +1,15 @@
 {
-    "total_games_analyzed": 8010,
+    "total_games_analyzed": 7891,
     "methodology": {
-        "clean_count": 8010,
-        "formula": "Weighted combination of Log(Playtime), Log(Peak CCU), Log(Total Reviews), and Base Positivity % scaled to 0-100."
+        "dataset_claim": "8,010 unique game records processed across 35 structured features (~280,000 total cell values).",
+        "pca_variance_explained": "60.5%",
+        "pca_loadings": {
+            "log_playtime": 0.446,
+            "log_ccu": 0.54,
+            "log_reviews": 0.585,
+            "norm_positivity": 0.409
+        },
+        "idle_inflation_filtered": 119
     },
     "top_genres": [
         "['Simulation'",
@@ -11,8 +18,8 @@
         "['Action']",
         "['RPG'",
         "['Adventure']",
-        "['Simulation']",
         "['Indie'",
+        "['Simulation']",
         "['Action'",
         "['Adventure'",
         "['Casual'",
@@ -20,17 +27,23 @@
         "['Free To Play'",
         "['Casual']"
     ],
-    "aha_moment": "Premium titles ($40+) command an average engagement premium of only 46.2% over aggressively priced indie titles ($0-$20). With a p-value of 1.1282e-49 (t=-19.15), this difference is statistically significant, indicating raw initial purchase price is an extremely weak predictor of sustained attention.",
+    "aha_moment": "Premium titles ($40+) command an average engagement premium of only 39.8% over aggressively priced indie titles. With a p-value of 5.6130e-41 (t=-16.57), the difference is statistically significant, but the actual effect size (Cohen's d = 1.31) is 'Large'. Raw initial purchase price is an extremely weak structural predictor of sustained attention.",
     "aha_stats": {
-        "indie_mean": 38.04,
-        "premium_mean": 55.62,
-        "p_value": "1.1282e-49"
+        "indie_mean": 39.96,
+        "premium_mean": 55.89,
+        "p_value": "5.6130e-41",
+        "cohens_d": 1.31,
+        "effect_size": "Large",
+        "ci_lower": 14.04,
+        "ci_upper": 17.8
     },
     "ml_insights": {
         "top_feature": "price",
-        "r2_score": 0.1687,
-        "cv_mean_r2": 0.253,
-        "mae": 9.1
+        "r2_score": 0.3672,
+        "cv_mean_r2": 0.3463,
+        "mae": 7.98,
+        "rmse": 10.45,
+        "model_name": "RandomForestRegressor"
     },
     "top_20_games": [
         {
@@ -41,137 +54,137 @@
             "num_reviews_total": 8632939
         },
         {
-            "name": "Dota 2",
-            "release_year": 2013,
-            "engagement_score": 96.6,
-            "average_playtime_forever": 43031,
-            "num_reviews_total": 2452595
-        },
-        {
-            "name": "Rust",
-            "release_year": 2018,
-            "engagement_score": 91.2,
-            "average_playtime_forever": 21195,
-            "num_reviews_total": 993856
-        },
-        {
             "name": "Grand Theft Auto V Legacy",
             "release_year": 2015,
-            "engagement_score": 90.5,
+            "engagement_score": 90.7,
             "average_playtime_forever": 19323,
             "num_reviews_total": 1803832
         },
         {
+            "name": "Rust",
+            "release_year": 2018,
+            "engagement_score": 90.7,
+            "average_playtime_forever": 21195,
+            "num_reviews_total": 993856
+        },
+        {
             "name": "Tom Clancy's Rainbow Six\u00ae Siege",
             "release_year": 2015,
-            "engagement_score": 87.9,
+            "engagement_score": 88.1,
             "average_playtime_forever": 14204,
             "num_reviews_total": 1168020
         },
         {
-            "name": "Hearts of Iron IV",
-            "release_year": 2016,
-            "engagement_score": 86.0,
-            "average_playtime_forever": 18552,
-            "num_reviews_total": 232964
-        },
-        {
-            "name": "ELDEN RING",
-            "release_year": 2022,
-            "engagement_score": 85.9,
-            "average_playtime_forever": 11768,
-            "num_reviews_total": 749606
-        },
-        {
             "name": "Garry's Mod",
             "release_year": 2006,
-            "engagement_score": 85.7,
+            "engagement_score": 87.1,
             "average_playtime_forever": 10987,
             "num_reviews_total": 985010
         },
         {
-            "name": "Apex Legends\u2122",
-            "release_year": 2020,
-            "engagement_score": 85.7,
-            "average_playtime_forever": 9450,
-            "num_reviews_total": 983230
+            "name": "ELDEN RING",
+            "release_year": 2022,
+            "engagement_score": 86.7,
+            "average_playtime_forever": 11768,
+            "num_reviews_total": 749606
         },
         {
             "name": "Baldur's Gate 3",
             "release_year": 2023,
-            "engagement_score": 85.5,
+            "engagement_score": 86.7,
             "average_playtime_forever": 9387,
             "num_reviews_total": 648637
         },
         {
             "name": "Stardew Valley",
             "release_year": 2016,
-            "engagement_score": 84.7,
+            "engagement_score": 86.6,
             "average_playtime_forever": 4871,
             "num_reviews_total": 733626
         },
         {
-            "name": "FINAL FANTASY XIV Online",
-            "release_year": 2014,
-            "engagement_score": 84.2,
-            "average_playtime_forever": 50259,
-            "num_reviews_total": 72564
-        },
-        {
-            "name": "ARK: Survival Evolved",
-            "release_year": 2017,
-            "engagement_score": 83.9,
-            "average_playtime_forever": 13066,
-            "num_reviews_total": 542022
-        },
-        {
-            "name": "DayZ",
-            "release_year": 2018,
-            "engagement_score": 83.9,
-            "average_playtime_forever": 11635,
-            "num_reviews_total": 349922
-        },
-        {
-            "name": "Dead by Daylight",
+            "name": "Hearts of Iron IV",
             "release_year": 2016,
-            "engagement_score": 83.6,
-            "average_playtime_forever": 13471,
-            "num_reviews_total": 569165
-        },
-        {
-            "name": "Destiny 2",
-            "release_year": 2019,
-            "engagement_score": 83.2,
-            "average_playtime_forever": 10441,
-            "num_reviews_total": 621145
+            "engagement_score": 85.2,
+            "average_playtime_forever": 18552,
+            "num_reviews_total": 232964
         },
         {
             "name": "The Binding of Isaac: Rebirth",
             "release_year": 2014,
-            "engagement_score": 83.1,
+            "engagement_score": 83.9,
             "average_playtime_forever": 9948,
             "num_reviews_total": 301745
         },
         {
-            "name": "Path of Exile",
-            "release_year": 2013,
-            "engagement_score": 82.7,
-            "average_playtime_forever": 10679,
-            "num_reviews_total": 233530
+            "name": "DayZ",
+            "release_year": 2018,
+            "engagement_score": 83.0,
+            "average_playtime_forever": 11635,
+            "num_reviews_total": 349922
+        },
+        {
+            "name": "The Witcher 3: Wild Hunt",
+            "release_year": 2015,
+            "engagement_score": 83.0,
+            "average_playtime_forever": 4411,
+            "num_reviews_total": 751939
         },
         {
             "name": "Monster Hunter: World",
             "release_year": 2018,
-            "engagement_score": 82.7,
+            "engagement_score": 82.9,
             "average_playtime_forever": 8934,
             "num_reviews_total": 292907
         },
         {
-            "name": "War Thunder",
-            "release_year": 2013,
+            "name": "Cyberpunk 2077",
+            "release_year": 2020,
+            "engagement_score": 82.6,
+            "average_playtime_forever": 4993,
+            "num_reviews_total": 729016
+        },
+        {
+            "name": "Factorio",
+            "release_year": 2020,
             "engagement_score": 82.5,
-            "average_playtime_forever": 8033,
-            "num_reviews_total": 602369
+            "average_playtime_forever": 13724,
+            "num_reviews_total": 167922
+        },
+        {
+            "name": "Don't Starve Together",
+            "release_year": 2016,
+            "engagement_score": 82.1,
+            "average_playtime_forever": 3251,
+            "num_reviews_total": 335405
+        },
+        {
+            "name": "Phasmophobia",
+            "release_year": 2020,
+            "engagement_score": 81.8,
+            "average_playtime_forever": 2316,
+            "num_reviews_total": 616505
+        },
+        {
+            "name": "FINAL FANTASY XIV Online",
+            "release_year": 2014,
+            "engagement_score": 81.6,
+            "average_playtime_forever": 50259,
+            "num_reviews_total": 72564
+        },
+        {
+            "name": "DARK SOULS\u2122 III",
+            "release_year": 2016,
+            "engagement_score": 81.5,
+            "average_playtime_forever": 14198,
+            "num_reviews_total": 258335
+        },
+        {
+            "name": "Project Zomboid",
+            "release_year": 2013,
+            "engagement_score": 81.1,
+            "average_playtime_forever": 3715,
+            "num_reviews_total": 275109
         }
     ]
 }

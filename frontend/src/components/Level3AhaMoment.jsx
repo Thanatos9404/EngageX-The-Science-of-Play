@@ -1,4 +1,5 @@
 import React from 'react';
+import PlotlyChart from './PlotlyChart';
 
 const Level3AhaMoment = ({ data, apiUrl }) => {
   return (
@@ -49,13 +50,13 @@ const Level3AhaMoment = ({ data, apiUrl }) => {
           {/* Right: Correlation Heatmap */}
           <div className="relative group">
             <div className="absolute -inset-1 bg-primary/20 rounded-lg blur group-hover:bg-primary/40 transition duration-500"></div>
-            <div className="relative bg-slate-900 border border-slate-700 p-2 rounded">
-              <img
-                src={`${apiUrl}/api/assets/correlation_heatmap.png`}
-                alt="Correlation Heatmap"
-                className="w-full h-auto rounded"
+            <div className="relative bg-slate-900 border border-slate-700 p-2 rounded min-h-[400px]">
+              <PlotlyChart
+                chartName="correlation_heatmap"
+                title=""
+                className="w-full h-auto border-none bg-transparent p-0"
               />
-              <div className="absolute top-2 right-2 bg-black/60 px-2 py-1 text-[10px] text-primary font-mono border border-primary/30 backdrop-blur">
+              <div className="absolute top-2 right-2 bg-black/60 px-2 py-1 text-[10px] text-primary font-mono border border-primary/30 backdrop-blur z-20">
                 [PEARSON_R_MATRIX]
               </div>
             </div>
@@ -69,7 +70,11 @@ const Level3AhaMoment = ({ data, apiUrl }) => {
               <span className="material-symbols-outlined text-primary">category</span>
               Genre Dominance
             </h4>
-            <img src={`${apiUrl}/api/assets/genre_performance.png`} alt="Genre Performance" className="w-full h-auto rounded relative z-10 mb-4" />
+            <PlotlyChart
+              chartName="genre_performance"
+              title=""
+              className="w-full h-[400px] mb-4 border-none bg-transparent p-0 relative z-10"
+            />
             <p className="text-sm text-slate-400 relative z-10">
               Mean engagement scores segmented by primary genre classification. Role-playing and strategy engines structurally demand higher hour counts, skewing absolute engagement.
             </p>
@@ -98,7 +103,11 @@ const Level3AhaMoment = ({ data, apiUrl }) => {
                 </div>
               ) : "Loading regression analysis..."}
             </div>
-            <img src={`${apiUrl}/api/assets/feature_importance.png`} alt="Feature Importance" className="w-full h-auto rounded border border-slate-700 relative z-10" />
+            <PlotlyChart
+              chartName="feature_importance"
+              title=""
+              className="w-full h-[300px] border-none bg-transparent p-0 relative z-10"
+            />
           </div>
         </div>
       </div>

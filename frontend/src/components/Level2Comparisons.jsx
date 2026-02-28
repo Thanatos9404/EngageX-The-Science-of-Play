@@ -1,4 +1,5 @@
 import React from 'react';
+import PlotlyChart from './PlotlyChart';
 
 const Level2Comparisons = ({ data, apiUrl }) => {
   return (
@@ -14,8 +15,12 @@ const Level2Comparisons = ({ data, apiUrl }) => {
           <div className="lg:col-span-5 space-y-6 order-2 lg:order-1">
             <div className="relative group">
               <div className="absolute -inset-1 bg-accent-green/20 rounded-lg blur group-hover:bg-accent-green/40 transition duration-500"></div>
-              <div className="relative bg-slate-900 border border-slate-700 p-2 rounded">
-                <img src={`${apiUrl}/api/assets/pricing_regression.png`} alt="Pricing Regression" className="w-full h-auto rounded" />
+              <div className="relative bg-slate-900 border border-slate-700 p-2 rounded min-h-[400px]">
+                <PlotlyChart
+                  chartName="pricing_regression"
+                  title=""
+                  className="w-full h-auto border-none bg-transparent p-0"
+                />
                 <div className="absolute top-2 right-2 bg-black/60 px-2 py-1 text-[10px] text-accent-green font-mono border border-accent-green/30 backdrop-blur">
                   [TIER_ANALYSIS]
                 </div>
@@ -51,7 +56,11 @@ const Level2Comparisons = ({ data, apiUrl }) => {
 
             <div className="bg-gradient-to-tl from-slate-900 to-transparent border border-slate-700/50 p-6 rounded-xl">
               <h4 className="font-bold text-white mb-3">DLC & Expansions</h4>
-              <img src={`${apiUrl}/api/assets/dlc_impact.png`} alt="DLC Impact Scatter" className="w-full h-auto rounded mb-4" />
+              <PlotlyChart
+                chartName="dlc_impact"
+                title=""
+                className="w-full h-[400px] mb-4 border-none bg-transparent p-0"
+              />
               <p className="text-slate-400 text-sm">
                 Expanding the core loop: By looking at the regression, we observe a distinct positive correlation between DLC density and player retention.
               </p>
