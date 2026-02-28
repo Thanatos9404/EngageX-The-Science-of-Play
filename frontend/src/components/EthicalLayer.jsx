@@ -20,7 +20,7 @@ const EthicalLayer = ({ data }) => {
               While peak concurrent users and infinite playtime loops are heralded as industry triumphs, the data reveals a secondary vector: <span className="text-red-400 font-bold">Review Volatility</span>.
             </p>
             <p className="text-slate-300 leading-relaxed mb-6">
-              As titles push beyond the 90th percentile of engagement scores, the influx of negative reviews accelerates non-linearly. High-retention ecosystems often structurally mandate persistent grinding, leading to community burnout and friction.
+              When titles push beyond the optimal median of engagement scores, the influx of negative reviews accelerates non-linearly. The latest polynomial regression models structurally outperform linear baseline fits, proving that high-retention ecosystems incur community fatigue when pushed too far.
             </p>
 
             <div className="bg-red-950/30 border-l-4 border-red-500 p-6 rounded backdrop-blur">

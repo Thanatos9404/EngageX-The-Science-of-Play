@@ -62,7 +62,7 @@ function App() {
           <a href="#comparisons" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Level 02: Economics</a>
           <a href="#aha" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Level 03: The Insight</a>
           <a href="#calculator" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Calculator</a>
-          <a href="#ethics" className="text-slate-400 hover:text-red-500 transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-red-900 border border-red-500"></span> Level 04: Ethics</a>
+          <a href="#ethics" className="text-slate-400 hover:text-red-500 transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Level 04: Ethics</a>
           <a href="#summary" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Mission Report</a>
         </nav>
 

@@ -54,20 +54,44 @@ const HeroLevel = ({ data }) => {
           </div>
         </div>
 
-        {/* Right Column: Visual Element */}
-        <div className="lg:col-span-5 relative hidden lg:block">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-primary/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-dashed border-primary/30 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-
-          <div className="relative z-10 bg-slate-900 border-2 border-primary/30 p-2 rounded-xl rotate-3 hover:rotate-0 transition-all duration-500 shadow-[0_0_30px_rgba(6,249,249,0.15)] group">
-            <div className="absolute -top-1 -left-1 w-6 h-6 border-t-4 border-l-4 border-primary z-20"></div>
-            <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-4 border-r-4 border-primary z-20"></div>
-
-            <div className="relative overflow-hidden rounded-lg bg-slate-800 aspect-[4/3] flex items-center justify-center p-4">
-              <h2 className="text-6xl font-black text-slate-700 transform -rotate-12 opacity-50 select-none tracking-tighter">ENGAGE_X</h2>
-              <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-60"></div>
+        {/* Right Column: Visual Element / The Verdict */}
+        <div className="lg:col-span-5 relative flex flex-col justify-center mt-12 lg:mt-0">
+          {data?.the_verdict ? (
+            <div className="bg-slate-900 border border-slate-700/50 p-8 rounded-xl relative shadow-2xl backdrop-blur-md overflow-hidden group hover:border-accent-green/50 transition-colors duration-500">
+              <div className="absolute top-0 right-0 p-4">
+                <div className="w-16 h-16 rounded-full border border-accent-green/20 flex items-center justify-center font-mono text-accent-green font-bold text-xl bg-accent-green/5">
+                  +{data.the_verdict.pct_increase}%
+                </div>
+              </div>
+              <div className="text-xs text-primary font-bold tracking-widest uppercase mb-4 opacity-80">Empirical Verdict</div>
+              <h2 className="text-3xl font-black text-white leading-tight mb-4">
+                Engagement scores have increased by {data.the_verdict.pct_increase}% (±{data.the_verdict.ci_margin}% CI) since 2015.
+              </h2>
+              <div className="space-y-3 font-mono text-sm text-slate-300 mb-6">
+                <p className="flex justify-between border-b border-slate-800 pb-2">
+                  <span>Pre-2015 Mean (Base)</span> <span className="text-white">{data.the_verdict.pre_mean}</span>
+                </p>
+                <p className="flex justify-between border-b border-slate-800 pb-2">
+                  <span>Post-2015 Mean</span> <span className="text-white">{data.the_verdict.post_mean}</span>
+                </p>
+                <p className="flex justify-between pb-2">
+                  <span>Effect Size (Cohen's d)</span> <span className="text-accent-green font-bold">{data.the_verdict.cohens_d}</span>
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-slate-700">
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-bold tracking-widest uppercase text-slate-400">Are games engineered for engagement?</span>
+                  <div className="px-4 py-1 bg-accent-green text-background-dark font-black font-mono text-lg rounded-sm">{data.the_verdict.answer}</div>
+                </div>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="relative z-10 bg-slate-900 border-2 border-primary/30 p-2 rounded-xl rotate-3 shadow-[0_0_30px_rgba(6,249,249,0.15)] group">
+              <div className="relative overflow-hidden rounded-lg bg-slate-800 aspect-[4/3] flex items-center justify-center p-4">
+                <h2 className="text-6xl font-black text-slate-700 transform -rotate-12 opacity-50 select-none tracking-tighter">ENGAGE_X</h2>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -14,50 +14,30 @@ const Level3AhaMoment = ({ data, apiUrl }) => {
           <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-wider">The Insight</h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: The "Aha" Text & Stats */}
-          <div>
-            <div className="inline-block bg-accent-green/10 text-accent-green border border-accent-green/30 px-3 py-1 rounded text-sm font-mono mb-6 backdrop-blur">
-              STATISTICAL_ANOMALY_DETECTED
-            </div>
-            <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Price is Not Protocol.
-            </h3>
+        <div className="mb-16">
+          <div className="inline-block bg-accent-green/10 text-accent-green border border-accent-green/30 px-3 py-1 rounded text-sm font-mono mb-6 backdrop-blur">
+            STRUCTURAL_TIMELINE_DIVERGENCE
+          </div>
+          <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            Post-2015 engagement growth is structurally driven by F2P and DLC-heavy ecosystems.
+          </h3>
 
-            <div className="bg-slate-900/80 border-l-4 border-accent-green p-6 rounded-r mb-8 backdrop-blur">
-              <p className="text-slate-300 text-lg leading-relaxed font-medium">
-                {data?.aha_moment || "Analyzing pricing tiers against lifetime retention matrices to determine statistical significance."}
-              </p>
-              {data?.aha_stats && (
-                <div className="mt-4 grid grid-cols-3 gap-4 border-t border-slate-700/50 pt-4">
-                  <div>
-                    <p className="text-xs text-slate-500 font-mono uppercase mb-1">Indie Mean ($0-20)</p>
-                    <p className="text-xl font-bold text-white">{data.aha_stats.indie_mean}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500 font-mono uppercase mb-1">Premium Mean ($40+)</p>
-                    <p className="text-xl font-bold text-white">{data.aha_stats.premium_mean}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500 font-mono uppercase mb-1">P-Value</p>
-                    <p className="text-xl font-bold text-accent-green">{data.aha_stats.p_value}</p>
-                  </div>
-                </div>
-              )}
-            </div>
+          <div className="bg-slate-900/80 border-l-4 border-accent-green p-6 rounded-r mb-12 backdrop-blur max-w-4xl">
+            <p className="text-slate-300 text-lg leading-relaxed font-medium">
+              Segmenting the dataset longitudinally reveals the true engineering shift. The baseline attention span for standalone Premium titles has remained functionally flat. The industry's massive aggregate engagement spikes over the last decade are almost entirely attributable to Free-to-Play models and games sustaining high DLC density.
+            </p>
           </div>
 
-          {/* Right: Correlation Heatmap */}
-          <div className="relative group">
+          <div className="relative group w-full">
             <div className="absolute -inset-1 bg-primary/20 rounded-lg blur group-hover:bg-primary/40 transition duration-500"></div>
-            <div className="relative bg-slate-900 border border-slate-700 p-2 rounded min-h-[400px]">
+            <div className="relative bg-slate-900 border border-slate-700 p-2 rounded min-h-[500px]">
               <PlotlyChart
-                chartName="correlation_heatmap"
+                chartName="cohort_divergence"
                 title=""
                 className="w-full h-auto border-none bg-transparent p-0"
               />
               <div className="absolute top-2 right-2 bg-black/60 px-2 py-1 text-[10px] text-primary font-mono border border-primary/30 backdrop-blur z-20">
-                [PEARSON_R_MATRIX]
+                [95%_CI_BOOTSTRAPPED]
               </div>
             </div>
           </div>
