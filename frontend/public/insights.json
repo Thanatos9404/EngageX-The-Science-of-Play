@@ -24,6 +24,7 @@
         "title": "The Engagement Redistribution Hypothesis",
         "summary": "Across 7891 Steam titles, aggregate engagement has remained statistically flat since 2015 (\u0394 = +1.3%, 95% CI [-0.8%, +3.3%], Cohen's d = 0.04). However, beneath this stability lies a structural divergence: engagement growth is entirely concentrated in Free-to-Play and DLC-heavy ecosystems."
     },
+    "dlc_insight": "OLS Regression: \u03b2 = 1.346 \u00b1 0.097 per DLC (95% CI) | R\u00b2 = 0.086 | p = 1.62e-155",
     "top_genres": [
         "Simulation",
         "RPG",

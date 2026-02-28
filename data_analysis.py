@@ -279,6 +279,8 @@ def generate_correlation_and_scatter(df):
     with open("frontend/public/assets/dlc_impact.json", "w") as f:
         f.write(fig_dlc.to_json())
     
+    insights_data['dlc_insight'] = f"OLS Regression: β = {slope:.3f} ± {ci_margin:.3f} per DLC (95% CI) | R² = {r_value**2:.3f} | p = {p_value:.2e}"
+    
     # 7. Genre analysis (with CIs)
     def extract_first_genre(genres_str):
         if pd.isna(genres_str): return "Unknown"

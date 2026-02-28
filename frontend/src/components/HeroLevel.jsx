@@ -36,7 +36,7 @@ const HeroLevel = ({ data }) => {
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-            <a href="#trends" className="group relative px-8 py-4 bg-primary text-background-dark text-lg font-black uppercase tracking-widest hover:bg-white transition-all duration-300 hud-border shadow-[4px_4px_0px_#0f2323] hover:shadow-[6px_6px_0px_rgba(6,249,249,0.5)] hover:-translate-y-1">
+            <a href="#aha" className="group relative px-8 py-4 bg-primary text-background-dark text-lg font-black uppercase tracking-widest hover:bg-white transition-all duration-300 hud-border shadow-[4px_4px_0px_#0f2323] hover:shadow-[6px_6px_0px_rgba(6,249,249,0.5)] hover:-translate-y-1">
               <span className="flex items-center gap-3">
                 Start Exploration
                 <ArrowDown className="group-hover:translate-y-1 transition-transform" />
