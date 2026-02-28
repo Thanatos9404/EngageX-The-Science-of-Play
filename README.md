@@ -170,7 +170,7 @@ All statistical comparisons include **95% bootstrapped confidence intervals** un
 
 ## 📊 Dataset
 
-- **Source:** [Steam Games Dataset (Kaggle)](https://www.kaggle.com/)
+- **Source:** [Steam Games Dataset (Kaggle)]([https://www.kaggle.com/](https://www.kaggle.com/datasets/artermiloff/steam-games-dataset))
 - **Size:** 8,010 unique Steam titles across 35 structured features
 - **Cleaning:** Log-transforms, idle-inflation removal (idle_ratio > 10x median), owner midpoint parsing
 - **Outlier handling:** 99th percentile cap on DLC count for scatter charts
