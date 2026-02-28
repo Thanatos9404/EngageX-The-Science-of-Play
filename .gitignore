@@ -1,0 +1,24 @@
+# Environments
+venv/
+env/
+.env
+__pycache__/
+
+# Node
+node_modules/
+frontend/node_modules/
+dist/
+build/
+.npm/
+
+# Datasets (Avoid pushing large CSVs if they exceed GitHub limits or aren't meant for source control)
+dataset/
+*.csv
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/

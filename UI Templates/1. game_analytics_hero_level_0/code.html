@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Game Analytics - Level 0</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#06f9f9",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2323",
+                        "accent-green": "#39FF14", // Adding Neon Green for the 'esports' vibe requested
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(rgba(6, 249, 249, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(6, 249, 249, 0.05) 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom HUD effects */
+        .hud-border {
+            clip-path: polygon(
+                0 0, 
+                100% 0, 
+                100% calc(100% - 20px), 
+                calc(100% - 20px) 100%, 
+                0 100%
+            );
+        }
+        .scanline {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.15;
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(6, 249, 249, 0.5);
+        }
+        .neon-border {
+            box-shadow: 0 0 5px #06f9f9, inset 0 0 5px #06f9f9;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col relative overflow-hidden">
+<!-- Background Grid & Effects -->
+<div class="absolute inset-0 bg-grid-pattern bg-[size:40px_40px] pointer-events-none opacity-20"></div>
+<div class="scanline"></div>
+<!-- Top HUD / Navbar -->
+<nav class="relative z-20 w-full border-b border-primary/20 bg-background-dark/80 backdrop-blur-md">
+<div class="px-6 py-4 flex items-center justify-between max-w-7xl mx-auto">
+<!-- Logo Area -->
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary animate-pulse">
+<span class="material-symbols-outlined text-3xl">sports_esports</span>
+</div>
+<div class="flex flex-col">
+<h2 class="text-white text-lg font-bold uppercase tracking-widest leading-none">Game<span class="text-primary">Analytics</span></h2>
+<span class="text-xs text-primary/60 font-mono tracking-widest">SYSTEM_READY</span>
+</div>
+</div>
+<!-- Navigation Links (Hidden on mobile) -->
+<div class="hidden md:flex items-center gap-10">
+<a class="text-slate-300 hover:text-primary hover:text-glow text-sm font-bold uppercase tracking-wider transition-colors" href="#">Mission</a>
+<a class="text-slate-300 hover:text-primary hover:text-glow text-sm font-bold uppercase tracking-wider transition-colors" href="#">Data</a>
+<a class="text-slate-300 hover:text-primary hover:text-glow text-sm font-bold uppercase tracking-wider transition-colors" href="#">Intel</a>
+</div>
+<!-- Login / Connect Button -->
+<button class="hidden md:flex items-center gap-2 border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary px-5 py-2 rounded uppercase text-xs font-bold tracking-widest transition-all">
+<span class="material-symbols-outlined text-sm">terminal</span>
+<span>Connect</span>
+</button>
+<!-- Mobile Menu Icon -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<!-- Health/Progress Bar Section -->
+<div class="w-full px-6 pb-4 max-w-7xl mx-auto">
+<div class="flex justify-between items-end mb-1">
+<span class="text-primary text-xs font-mono font-bold uppercase tracking-widest">Player Level 0</span>
+<span class="text-accent-green text-xs font-mono font-bold uppercase tracking-widest">XP: 0/1000</span>
+</div>
+<div class="w-full h-3 bg-slate-900 border border-slate-700 rounded-sm relative overflow-hidden">
+<!-- Striped background for empty bar -->
+<div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(45deg, #000 25%, transparent 25%, transparent 50%, #000 50%, #000 75%, transparent 75%, transparent); background-size: 10px 10px;"></div>
+<!-- Fill -->
+<div class="h-full bg-primary w-[5%] relative shadow-[0_0_10px_rgba(6,249,249,0.8)]">
+<div class="absolute right-0 top-0 bottom-0 w-1 bg-white/50"></div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow flex items-center justify-center relative z-10 px-6 py-12 md:py-20">
+<div class="max-w-7xl w-full grid lg:grid-cols-12 gap-12 items-center">
+<!-- Left Column: Typography & CTA -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<!-- Tagline Badge -->
+<div class="inline-flex self-start items-center gap-2 px-3 py-1 rounded bg-accent-green/10 border border-accent-green/30 text-accent-green text-xs font-bold font-mono tracking-widest uppercase">
+<span class="w-2 h-2 rounded-full bg-accent-green animate-ping"></span>
+                    Live Analysis
+                </div>
+<!-- Main Title -->
+<h1 class="text-5xl md:text-7xl font-black text-white leading-[0.9] tracking-tighter uppercase relative">
+                    Are Games
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500 block text-glow">Becoming More</span>
+                    Engineered for
+                    <span class="relative inline-block">
+                        Engagement?
+                        <!-- Decorative underline -->
+<svg class="absolute -bottom-4 left-0 w-full h-3 text-primary" preserveaspectratio="none" viewbox="0 0 100 10">
+<path d="M0 5 L100 5" stroke="currentColor" stroke-dasharray="5,5" stroke-width="2"></path>
+</svg>
+</span>
+</h1>
+<!-- Subtitle -->
+<p class="text-slate-400 text-lg md:text-xl font-medium max-w-2xl leading-relaxed border-l-4 border-primary pl-6">
+                    A data-driven deep dive into the mechanics of modern gaming. We analyze loot boxes, retention loops, and the psychology behind the "just one more turn" phenomenon.
+                </p>
+<!-- Stats Grid (Mini HUD) -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+<div class="bg-slate-900/50 border border-slate-700 p-4 rounded backdrop-blur-sm">
+<div class="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Data Points</div>
+<div class="text-2xl text-white font-mono font-bold">1.2M+</div>
+</div>
+<div class="bg-slate-900/50 border border-slate-700 p-4 rounded backdrop-blur-sm">
+<div class="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Games Analyzed</div>
+<div class="text-2xl text-primary font-mono font-bold">542</div>
+</div>
+<div class="hidden md:block bg-slate-900/50 border border-slate-700 p-4 rounded backdrop-blur-sm">
+<div class="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Player Base</div>
+<div class="text-2xl text-accent-green font-mono font-bold">Global</div>
+</div>
+</div>
+<!-- CTA Button -->
+<div class="mt-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+<button class="group relative px-8 py-4 bg-primary text-background-dark text-lg font-black uppercase tracking-widest hover:bg-white transition-all duration-300 hud-border shadow-[4px_4px_0px_#0f2323] hover:shadow-[6px_6px_0px_rgba(6,249,249,0.5)] hover:-translate-y-1">
+<span class="flex items-center gap-3">
+                            Start Exploration
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</button>
+<span class="text-slate-500 text-sm font-mono animate-pulse blink">&lt; PRESS START &gt;</span>
+</div>
+</div>
+<!-- Right Column: Visual Element -->
+<div class="lg:col-span-5 relative hidden lg:block">
+<!-- Decorative Circle/Radar Backdrops -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-primary/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-dashed border-primary/30 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+<!-- Hero Image Container with HUD styling -->
+<div class="relative z-10 bg-slate-900 border-2 border-primary/30 p-2 rounded-xl rotate-3 hover:rotate-0 transition-all duration-500 shadow-[0_0_30px_rgba(6,249,249,0.15)] group">
+<!-- Corner Accents -->
+<div class="absolute -top-1 -left-1 w-6 h-6 border-t-4 border-l-4 border-primary z-20"></div>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 border-b-4 border-r-4 border-primary z-20"></div>
+<!-- Image -->
+<div class="relative overflow-hidden rounded-lg bg-slate-800 aspect-[4/3]">
+<img alt="Esports tournament stage with neon lights and gaming setup" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 mix-blend-luminosity hover:mix-blend-normal" data-alt="Esports arena with neon lighting and computer screens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuasDdvZK5oFuJd-LN0iRyfaAUSrpz1szKvunKyFBW2-q_RoTKe1ARMPA-LQeIfLm4AxvZ578q-S_aGbWDL6lupHGyxB0ixYnNW0U0joV8ob7OXZUlK5xLEKhSlvZkNNl_eYgifHm7YAdZRickQFfmsFSZn6QyeqgZdo_VHGF5DeQ0q3Z3SKFJvFIK-QvWCItrMt9YjSLVyKksmTzQOHhI9eR6q-XljH68kbBzlkoDwIUxQFMp-CnpKQjjN-QHiQl7ck4XcpEYqPWZ"/>
+<!-- Image Overlay Gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-60"></div>
+<!-- Floating UI Element on Image -->
+<div class="absolute bottom-4 left-4 right-4 bg-background-dark/90 border border-primary/30 p-3 rounded backdrop-blur flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-400 uppercase tracking-widest">Current Trend</span>
+<span class="text-sm font-bold text-white">Engagement Loops</span>
+</div>
+<div class="text-accent-green font-mono font-bold text-sm">+24% <span class="material-symbols-outlined text-sm align-middle">trending_up</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Status Bar -->
+<footer class="relative z-20 bg-background-dark border-t border-primary/10 py-3 px-6">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-slate-500">
+<div class="flex items-center gap-4">
+<span>© 2024 GAME ANALYTICS PROJECT</span>
+<span class="hidden md:inline text-slate-700">|</span>
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary/50"></span>
+                    SERVER: US-EAST-1
+                </span>
+</div>
+<div class="flex gap-6 uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="#">Privacy Protocol</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Engagement</a>
+</div>
+</div>
+</footer>
+</body></html>

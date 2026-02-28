@@ -1,0 +1,18 @@
+{
+    "total_games_analyzed": 7929,
+    "trend_insight": "Engagement shows a slight upward trend in recent years, despite market saturation.",
+    "dlc_insight": "Games with DLC average 5.00 engagement vs 2.77 for base games.",
+    "free_vs_paid_insight": "Free-to-Play games significantly outperform Paid games in top-tier engagement due to low entry barriers.",
+    "aha_moment": "The 'Aha' Moment: While AAAs draw massive initial CCU, the long-tail retention strongly favors games prioritizing continuous updates over initial price tags.",
+    "top_genres": [
+        "['Audio Production']",
+        "['Massively Multiplayer'",
+        "['Strategy'",
+        "['RPG']",
+        "['Strategy']"
+    ],
+    "ml_insights": {
+        "top_feature": "price",
+        "top_feature_impact": "Positive"
+    }
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Final Boss: The Aha Moment</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#06f9f9",
+                        "primary-dark": "#04c2c2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102323",
+                        "surface-dark": "#183535",
+                        "surface-darker": "#0d1b1b",
+                        "accent-green": "#0bda50",
+                    },
+                    fontFamily: {
+                        display: ["Space Grotesk", "sans-serif"],
+                        body: ["Noto Sans", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'glitch-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a3b3b' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#214a4a] bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-6 py-4 md:px-10 lg:px-40">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">sports_esports</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-display font-bold leading-tight tracking-tight">GameAnalytics</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Methodology</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Data Sets</a>
+<a class="text-slate-900 dark:text-white text-sm font-bold leading-normal border-b-2 border-primary" href="#">Insights</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">About</a>
+</nav>
+<button class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-primary-dark transition-colors text-background-dark text-sm font-bold leading-normal tracking-wide shadow-[0_0_15px_rgba(6,249,249,0.3)]">
+<span class="truncate">Download Report</span>
+</button>
+<button class="md:hidden text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center w-full bg-glitch-pattern bg-fixed">
+<!-- Hero / Achievement Section -->
+<section class="w-full max-w-7xl px-4 md:px-10 py-12 flex flex-col gap-8">
+<!-- Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-primary/20 pb-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary font-display font-bold tracking-wider text-sm uppercase">
+<span class="material-symbols-outlined text-lg">flag</span>
+<span>Mission Status: Complete</span>
+</div>
+<h1 class="text-4xl md:text-6xl font-display font-black leading-tight tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
+                        FINAL BOSS: <br/><span class="text-white">THE AHA MOMENT</span>
+</h1>
+</div>
+<div class="flex items-center gap-2 bg-surface-dark px-4 py-2 rounded-full border border-primary/30 shadow-[0_0_10px_rgba(6,249,249,0.1)]">
+<span class="material-symbols-outlined text-accent-green">check_circle</span>
+<span class="text-sm font-mono text-slate-300">Analysis Complete: 100%</span>
+</div>
+</div>
+<!-- Main Achievement Card -->
+<div class="mt-4 relative group">
+<!-- Glowing effect behind -->
+<div class="absolute -inset-1 bg-gradient-to-r from-primary via-accent-green to-primary rounded-xl opacity-20 blur-lg transition-opacity duration-500 group-hover:opacity-40"></div>
+<div class="relative flex flex-col lg:flex-row bg-surface-darker border border-primary/50 rounded-xl overflow-hidden shadow-2xl">
+<!-- Image Side -->
+<div class="lg:w-1/2 relative min-h-[300px] lg:min-h-full">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Abstract digital cybernetic interface background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5FhxfkT6YIDsjhLEp8vHNgUaSPd04SFYvNmuLuU6zLgY-6i-8idiUEUpyKFbgVzqQJPC_9DBe4FNN-0FjaS2jWs_IHDUL6SFAbj2s4-yFe7aG14eeujLktRVzQb0NLMb7n3jMgPmXeeeqjW2hLMiBpGZwbRQf2mr-0dgYrmdilOKHYsISFubF4fj75S39ilKricP00BUqaHBe75Kz2xfP0SdKYYvRRlWEAp6DE9MjPRlZM9SjTFE6hfKpEL444XQ0ZK3SpmEiVzHb');"></div>
+<div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-surface-darker via-transparent to-transparent opacity-90"></div>
+<!-- Overlay Badge -->
+<div class="absolute bottom-6 left-6 right-6 lg:top-auto lg:bottom-10 lg:left-10 flex items-center gap-4">
+<div class="size-16 rounded-full bg-background-dark border-2 border-accent-green flex items-center justify-center shadow-[0_0_15px_rgba(11,218,80,0.5)]">
+<span class="material-symbols-outlined text-4xl text-accent-green">lock_open</span>
+</div>
+<div>
+<p class="text-accent-green font-mono text-xs font-bold uppercase tracking-widest mb-1">Achievement Unlocked</p>
+<h3 class="text-white font-display font-bold text-xl md:text-2xl leading-none">Engagement Engineered</h3>
+</div>
+</div>
+</div>
+<!-- Content Side -->
+<div class="lg:w-1/2 p-8 md:p-12 flex flex-col justify-center gap-6 relative">
+<!-- Decorative corner pieces -->
+<div class="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-primary/50"></div>
+<div class="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-primary/50"></div>
+<div>
+<span class="inline-block py-1 px-3 rounded bg-primary/10 text-primary text-xs font-bold tracking-wider mb-4 border border-primary/20">CORE DISCOVERY</span>
+<p class="text-slate-300 text-lg leading-relaxed">
+                                Our comprehensive analysis of 500+ top-tier titles reveals a fundamental shift in game design philosophy. We are no longer just playing games; <span class="text-white font-bold border-b border-primary/50">games are playing us.</span>
+</p>
+</div>
+<div class="p-6 bg-primary/5 border-l-4 border-primary rounded-r-lg">
+<p class="text-xl md:text-2xl font-display font-bold text-white italic">
+                                "Data confirms a <span class="text-primary">40% increase</span> in engagement mechanics over the last decade."
+                            </p>
+</div>
+<div class="flex items-center gap-4 pt-2">
+<button class="flex items-center gap-2 text-sm font-bold text-primary hover:text-white transition-colors group/btn">
+<span>View Full Dataset</span>
+<span class="material-symbols-outlined text-lg transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+<div class="bg-surface-dark border border-slate-700/50 hover:border-accent-green/50 transition-colors p-6 rounded-lg flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">trending_up</span>
+</div>
+<p class="text-slate-400 font-medium text-sm uppercase tracking-wider">Retention</p>
+<div class="flex items-end gap-3">
+<span class="text-4xl font-display font-bold text-white">+40%</span>
+<span class="text-accent-green text-sm font-bold mb-1.5 flex items-center">
+<span class="material-symbols-outlined text-base">arrow_drop_up</span> 12% vs 2010
+                        </span>
+</div>
+</div>
+<div class="bg-surface-dark border border-slate-700/50 hover:border-primary/50 transition-colors p-6 rounded-lg flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">schedule</span>
+</div>
+<p class="text-slate-400 font-medium text-sm uppercase tracking-wider">Session Length</p>
+<div class="flex items-end gap-3">
+<span class="text-4xl font-display font-bold text-white">2.5hrs</span>
+<span class="text-accent-green text-sm font-bold mb-1.5 flex items-center">
+<span class="material-symbols-outlined text-base">arrow_drop_up</span> +30 min avg
+                        </span>
+</div>
+</div>
+<div class="bg-surface-dark border border-slate-700/50 hover:border-yellow-400/50 transition-colors p-6 rounded-lg flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">payments</span>
+</div>
+<p class="text-slate-400 font-medium text-sm uppercase tracking-wider">Microtransactions</p>
+<div class="flex items-end gap-3">
+<span class="text-4xl font-display font-bold text-white">+15%</span>
+<span class="text-accent-green text-sm font-bold mb-1.5 flex items-center">
+<span class="material-symbols-outlined text-base">arrow_drop_up</span> +5% YoY
+                        </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Loot Drops Section -->
+<section class="w-full bg-surface-darker border-t border-slate-800 py-16 px-4 md:px-10 flex justify-center">
+<div class="max-w-7xl w-full flex flex-col gap-10">
+<div class="flex flex-col gap-4 max-w-2xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-3xl text-primary animate-pulse">diamond</span>
+<h2 class="text-3xl md:text-4xl font-display font-black text-white tracking-tight">
+                            LOOT DROPS <span class="text-slate-500 text-2xl md:text-3xl font-bold ml-2">(KEY TAKEAWAYS)</span>
+</h2>
+</div>
+<p class="text-slate-400 text-lg">
+                        The statistical loot gathered from analyzing user behavior patterns across the most successful modern gaming franchises.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="group relative bg-surface-dark rounded-xl p-1 overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative bg-background-dark/80 backdrop-blur-sm h-full rounded-lg p-6 flex flex-col gap-4 border border-slate-700 group-hover:border-primary/50 transition-colors">
+<div class="size-12 rounded-lg bg-surface-dark border border-slate-600 flex items-center justify-center group-hover:border-primary group-hover:text-primary text-slate-300 transition-all">
+<span class="material-symbols-outlined text-2xl">calendar_month</span>
+</div>
+<div>
+<h3 class="text-xl font-display font-bold text-white mb-2 group-hover:text-primary transition-colors">Daily Login Bonuses</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                                    A psychological hook found in 85% of modern RPGs compared to just 10% in 2012. It leverages the fear of missing out (FOMO) to create habit loops.
+                                </p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative bg-surface-dark rounded-xl p-1 overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative bg-background-dark/80 backdrop-blur-sm h-full rounded-lg p-6 flex flex-col gap-4 border border-slate-700 group-hover:border-primary/50 transition-colors">
+<div class="size-12 rounded-lg bg-surface-dark border border-slate-600 flex items-center justify-center group-hover:border-primary group-hover:text-primary text-slate-300 transition-all">
+<span class="material-symbols-outlined text-2xl">confirmation_number</span>
+</div>
+<div>
+<h3 class="text-xl font-display font-bold text-white mb-2 group-hover:text-primary transition-colors">Battle Pass Mechanics</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                                    The dominant monetization model replacing DLCs. Creates a sunk-cost fallacy where players feel compelled to play to "earn back" their purchase.
+                                </p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative bg-surface-dark rounded-xl p-1 overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative bg-background-dark/80 backdrop-blur-sm h-full rounded-lg p-6 flex flex-col gap-4 border border-slate-700 group-hover:border-primary/50 transition-colors">
+<div class="size-12 rounded-lg bg-surface-dark border border-slate-600 flex items-center justify-center group-hover:border-primary group-hover:text-primary text-slate-300 transition-all">
+<span class="material-symbols-outlined text-2xl">groups</span>
+</div>
+<div>
+<h3 class="text-xl font-display font-bold text-white mb-2 group-hover:text-primary transition-colors">Social Pressure</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                                    Multiplayer features are now integrated into single-player campaigns. Leaderboards and shared achievements utilize social validation loops.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full bg-background-dark border-t border-slate-800 py-10 px-4 md:px-10 flex justify-center">
+<div class="max-w-7xl w-full flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 text-slate-500">
+<span class="material-symbols-outlined">sports_esports</span>
+<span class="text-sm font-medium">GameAnalytics © 2024</span>
+</div>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

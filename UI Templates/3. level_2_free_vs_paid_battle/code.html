@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GameMetrics - Level 2: Free vs Paid Battle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#06f9f9",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102323",
+                        "neon-green": "#0bda50",
+                        "pixel-orange": "#fa5c38",
+                        "hud-dark": "#183535",
+                        "hud-border": "#2f6a6a",
+                        "text-dim": "#8ecccc",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #2f6a6a 1px, transparent 1px), linear-gradient(to bottom, #2f6a6a 1px, transparent 1px)",
+                    },
+                    backgroundSize: {
+                        'grid-pattern': '40px 40px',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glitch-text {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        .hud-panel {
+            box-shadow: 0 0 15px rgba(6, 249, 249, 0.05);
+            backdrop-filter: blur(4px);
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #102323; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2f6a6a; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06f9f9; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased selection:bg-primary selection:text-background-dark overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden">
+<!-- Background Grid Effect -->
+<div class="absolute inset-0 z-0 opacity-10 pointer-events-none bg-[length:40px_40px] bg-[linear-gradient(to_right,#2f6a6a_1px,transparent_1px),linear-gradient(to_bottom,#2f6a6a_1px,transparent_1px)]"></div>
+<div class="layout-container flex h-full grow flex-col z-10 relative">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-hud-border bg-background-dark/90 px-6 lg:px-10 py-4 sticky top-0 z-50 backdrop-blur-md">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">sports_esports</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-wider uppercase">GameMetrics</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 hidden md:flex">
+<div class="flex items-center gap-9">
+<a class="text-text-dim hover:text-primary transition-colors text-sm font-bold uppercase tracking-wide" href="#">Home</a>
+<a class="text-primary text-sm font-bold uppercase tracking-wide border-b-2 border-primary pb-0.5" href="#">Analytics</a>
+<a class="text-text-dim hover:text-primary transition-colors text-sm font-bold uppercase tracking-wide" href="#">Trends</a>
+<a class="text-text-dim hover:text-primary transition-colors text-sm font-bold uppercase tracking-wide" href="#">About</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-white transition-all text-background-dark text-sm font-bold uppercase tracking-widest shadow-[0_0_10px_rgba(6,249,249,0.5)]">
+<span class="truncate">Log In</span>
+</button>
+</div>
+<div class="md:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</header>
+<main class="flex flex-1 flex-col items-center justify-start py-8 px-4 md:px-8 lg:px-20 w-full max-w-7xl mx-auto">
+<!-- Page Title Area -->
+<div class="w-full text-center mb-12 relative">
+<h2 class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-2">Round 2</h2>
+<h1 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none glitch-text drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                    Free <span class="text-neon-green">vs</span> Paid
+                </h1>
+<div class="h-1 w-24 bg-gradient-to-r from-neon-green via-white to-pixel-orange mx-auto mt-6 rounded-full"></div>
+</div>
+<!-- VS Section (Split Layout) -->
+<div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 relative">
+<!-- Central VS Badge (Absolute centered on desktop) -->
+<div class="hidden lg:flex absolute left-1/2 top-0 -translate-x-1/2 -translate-y-4 z-20 flex-col items-center justify-center">
+<div class="bg-background-dark border-4 border-white rounded-full size-20 flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+<span class="font-black text-3xl italic text-white">VS</span>
+</div>
+<div class="h-[calc(100%+4rem)] w-0.5 bg-gradient-to-b from-white/50 via-white/10 to-transparent mt-[-2px]"></div>
+</div>
+<!-- LEFT SIDE: FREE TO PLAY -->
+<section class="flex flex-col gap-6 relative group">
+<div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-neon-green to-transparent opacity-50 rounded-full"></div>
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-neon-green text-3xl">all_inclusive</span>
+<h3 class="text-2xl font-bold text-white uppercase tracking-tight">Free-to-Play</h3>
+</div>
+<!-- Stat Card: Revenue -->
+<div class="hud-panel bg-hud-dark/80 border border-hud-border rounded-xl p-6 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-neon-green shadow-[0_0_10px_#0bda50]"></div>
+<div class="flex justify-between items-start">
+<div>
+<p class="text-text-dim text-sm font-bold uppercase tracking-wider mb-1">Global Revenue</p>
+<p class="text-white text-4xl font-black tracking-tight">$85B</p>
+</div>
+<div class="bg-neon-green/10 text-neon-green px-3 py-1 rounded text-sm font-bold border border-neon-green/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12%
+                            </div>
+</div>
+<p class="text-xs text-text-dim mt-4 opacity-70">Dominating mobile markets through micro-transactions.</p>
+</div>
+<!-- Chart: Monetization Models (Ad Rev) -->
+<div class="hud-panel bg-hud-dark/80 border border-hud-border rounded-xl p-6 flex flex-col gap-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-text-dim text-xs font-bold uppercase tracking-wider">Monetization Engine</p>
+<h4 class="text-white text-xl font-bold">Ad Revenue</h4>
+</div>
+<div class="flex gap-1 items-center">
+<p class="text-text-dim text-xs font-normal">YTD</p>
+<p class="text-neon-green text-sm font-bold">+5%</p>
+</div>
+</div>
+<!-- Custom CSS Bar Chart -->
+<div class="flex items-end justify-between h-32 gap-2 mt-2 px-2">
+<!-- Jan -->
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-hud-border/30 rounded-t-sm h-full flex items-end relative overflow-hidden">
+<div class="w-full bg-neon-green/80 group-hover:bg-neon-green transition-all duration-300 shadow-[0_0_15px_rgba(11,218,80,0.3)]" style="height: 40%;"></div>
+</div>
+<span class="text-[10px] text-text-dim font-bold uppercase">Jan</span>
+</div>
+<!-- Feb -->
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-hud-border/30 rounded-t-sm h-full flex items-end relative overflow-hidden">
+<div class="w-full bg-neon-green/80 group-hover:bg-neon-green transition-all duration-300 shadow-[0_0_15px_rgba(11,218,80,0.3)]" style="height: 65%;"></div>
+</div>
+<span class="text-[10px] text-text-dim font-bold uppercase">Feb</span>
+</div>
+<!-- Mar -->
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-hud-border/30 rounded-t-sm h-full flex items-end relative overflow-hidden">
+<div class="w-full bg-neon-green/80 group-hover:bg-neon-green transition-all duration-300 shadow-[0_0_15px_rgba(11,218,80,0.3)]" style="height: 55%;"></div>
+</div>
+<span class="text-[10px] text-text-dim font-bold uppercase">Mar</span>
+</div>
+<!-- Apr -->
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-hud-border/30 rounded-t-sm h-full flex items-end relative overflow-hidden">
+<div class="w-full bg-neon-green/80 group-hover:bg-neon-green transition-all duration-300 shadow-[0_0_15px_rgba(11,218,80,0.3)]" style="height: 85%;"></div>
+</div>
+<span class="text-[10px] text-text-dim font-bold uppercase">Apr</span>
+</div>
+<!-- May -->
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="w-full bg-hud-border/30 rounded-t-sm h-full flex items-end relative overflow-hidden">
+<div class="w-full bg-neon-green/80 group-hover:bg-neon-green transition-all duration-300 shadow-[0_0_15px_rgba(11,218,80,0.3)]" style="height: 70%;"></div>
+</div>
+<span class="text-[10px] text-text-dim font-bold uppercase">May</span>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT SIDE: PREMIUM -->
+<section class="flex flex-col gap-6 relative group mt-12 lg:mt-0">
+<div class="absolute -right-4 top-0 bottom-0 w-1 bg-gradient-to-b from-pixel-orange to-transparent opacity-50 rounded-full lg:block hidden"></div>
+<div class="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-pixel-orange to-transparent opacity-50 rounded-full lg:hidden block"></div>
+<div class="flex items-center justify-start lg:justify-end gap-3 mb-2">
+<h3 class="text-2xl font-bold text-white uppercase tracking-tight text-right">Premium</h3>
+<span class="material-symbols-outlined text-pixel-orange text-3xl">workspace_premium</span>
+</div>
+<!-- Stat Card: Premium Revenue -->
+<div class="hud-panel bg-hud-dark/80 border border-hud-border rounded-xl p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-full h-1 bg-pixel-orange shadow-[0_0_10px_#fa5c38]"></div>
+<div class="flex justify-between items-start flex-row-reverse lg:flex-row">
+<div class="bg-pixel-orange/10 text-pixel-orange px-3 py-1 rounded text-sm font-bold border border-pixel-orange/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span> -3%
+                            </div>
+<div class="text-right lg:text-left">
+<p class="text-text-dim text-sm font-bold uppercase tracking-wider mb-1">Premium Revenue</p>
+<p class="text-white text-4xl font-black tracking-tight">$22B</p>
+</div>
+</div>
+<p class="text-xs text-text-dim mt-4 opacity-70 text-right lg:text-left">Niche market focused on high-fidelity experiences.</p>
+</div>
+<!-- Chart: Retention -->
+<div class="hud-panel bg-hud-dark/80 border border-hud-border rounded-xl p-6 flex flex-col gap-4">
+<div class="flex justify-between items-end flex-row-reverse lg:flex-row">
+<div class="text-right lg:text-left">
+<p class="text-text-dim text-xs font-bold uppercase tracking-wider">Engagement Loop</p>
+<h4 class="text-white text-xl font-bold">Player Retention</h4>
+</div>
+<div class="flex gap-1 items-center">
+<p class="text-text-dim text-xs font-normal">AVG</p>
+<p class="text-pixel-orange text-sm font-bold">High</p>
+</div>
+</div>
+<!-- Line Chart SVG -->
+<div class="relative w-full h-32 mt-2">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 400 120">
+<defs>
+<lineargradient id="gradientOrange" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#fa5c38" stop-opacity="0.5"></stop>
+<stop offset="100%" stop-color="#fa5c38" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Lines -->
+<line opacity="0.5" stroke="#2f6a6a" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="400" y1="30" y2="30"></line>
+<line opacity="0.5" stroke="#2f6a6a" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="400" y1="60" y2="60"></line>
+<line opacity="0.5" stroke="#2f6a6a" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="400" y1="90" y2="90"></line>
+<!-- Area Path -->
+<path d="M0,80 C40,75 80,40 120,45 S200,60 240,30 S320,40 400,20 V120 H0 Z" fill="url(#gradientOrange)"></path>
+<!-- Line Path -->
+<path d="M0,80 C40,75 80,40 120,45 S200,60 240,30 S320,40 400,20" fill="none" stroke="#fa5c38" stroke-linecap="round" stroke-width="3"></path>
+<!-- Dots -->
+<circle cx="120" cy="45" fill="#102323" r="4" stroke="#fa5c38" stroke-width="2"></circle>
+<circle cx="240" cy="30" fill="#102323" r="4" stroke="#fa5c38" stroke-width="2"></circle>
+<circle cx="400" cy="20" fill="#102323" r="4" stroke="#fa5c38" stroke-width="2"></circle>
+</svg>
+<div class="flex justify-between text-[10px] text-text-dim mt-2 font-bold uppercase px-2">
+<span>Day 1</span>
+<span>Day 7</span>
+<span>Day 14</span>
+<span>Day 30</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Mechanics Face-Off Section -->
+<div class="w-full mt-16 lg:mt-24">
+<div class="flex flex-col gap-4 mb-8 border-l-4 border-primary pl-6">
+<h2 class="text-white text-3xl md:text-4xl font-black uppercase tracking-tight">Mechanics Face-off</h2>
+<p class="text-text-dim text-base max-w-2xl">Direct comparison of core engagement loops and psychological triggers used in both monetization strategies.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="group relative flex flex-col gap-4 rounded-xl border border-hud-border bg-hud-dark p-6 overflow-hidden transition-all hover:border-primary/50 hover:shadow-[0_0_20px_rgba(6,249,249,0.1)]">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">payments</span>
+</div>
+<div class="size-12 rounded-lg bg-background-dark border border-hud-border flex items-center justify-center text-primary mb-2 shadow-inner">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<h3 class="text-white text-lg font-bold mb-1">Microtransactions</h3>
+<p class="text-neon-green text-xs font-bold uppercase tracking-wider mb-2">Free-to-Play Tactic</p>
+<p class="text-text-dim text-sm leading-relaxed">Small, frequent payments integrated into the core loop. Relies on removing friction and "whales".</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative flex flex-col gap-4 rounded-xl border border-hud-border bg-hud-dark p-6 overflow-hidden transition-all hover:border-primary/50 hover:shadow-[0_0_20px_rgba(6,249,249,0.1)]">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">lock_open</span>
+</div>
+<div class="size-12 rounded-lg bg-background-dark border border-hud-border flex items-center justify-center text-pixel-orange mb-2 shadow-inner">
+<span class="material-symbols-outlined">lock_open</span>
+</div>
+<div>
+<h3 class="text-white text-lg font-bold mb-1">Upfront Gate</h3>
+<p class="text-pixel-orange text-xs font-bold uppercase tracking-wider mb-2">Premium Tactic</p>
+<p class="text-text-dim text-sm leading-relaxed">High initial barrier to entry ($60+). Promise of a complete experience without interruptions.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative flex flex-col gap-4 rounded-xl border border-hud-border bg-hud-dark p-6 overflow-hidden transition-all hover:border-primary/50 hover:shadow-[0_0_20px_rgba(6,249,249,0.1)]">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">ads_click</span>
+</div>
+<div class="size-12 rounded-lg bg-background-dark border border-hud-border flex items-center justify-center text-white mb-2 shadow-inner">
+<span class="material-symbols-outlined">ads_click</span>
+</div>
+<div>
+<h3 class="text-white text-lg font-bold mb-1">Incentivized Ads</h3>
+<p class="text-neon-green text-xs font-bold uppercase tracking-wider mb-2">Hybrid Tactic</p>
+<p class="text-text-dim text-sm leading-relaxed">Watch-to-earn mechanics that trade player time for premium currency. High engagement, low churn risk.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Stats Strip -->
+<div class="w-full mt-12 pt-8 border-t border-hud-border flex flex-wrap justify-between gap-6 text-center lg:text-left">
+<div class="flex-1 min-w-[200px]">
+<p class="text-text-dim text-xs uppercase tracking-widest font-bold mb-1">Data Source</p>
+<p class="text-white font-medium">Global Gaming Report 2024</p>
+</div>
+<div class="flex-1 min-w-[200px]">
+<p class="text-text-dim text-xs uppercase tracking-widest font-bold mb-1">Last Updated</p>
+<p class="text-white font-medium">October 24, 2024</p>
+</div>
+<div class="flex-1 min-w-[200px]">
+<p class="text-text-dim text-xs uppercase tracking-widest font-bold mb-1">Analysis Type</p>
+<p class="text-primary font-bold">Comparative Market Study</p>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
