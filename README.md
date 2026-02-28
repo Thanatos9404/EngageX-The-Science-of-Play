@@ -1,5 +1,5 @@
 # EngageX: The Science of Play
-**Built for the Codédex Monthly Data Challenge (March 2025)**
+**Built for the Codédex Monthly Data Challenge (February 2026)**
 
 ## Overview
 **EngageX** is a rigorous, statistically grounded investigation into modern gaming mechanics using the sprawling 2025 Steam dataset. 

@@ -64,10 +64,10 @@ const MethodologySection = ({ data }) => {
                   Full methodological reproducibility is available. The entire data processing pipeline, Kruskal-Wallis code, Bootstrapping logic, and PCA validations are open-sourced.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <a href="https://github.com/theyashvardhan/engagex/blob/main/data_analysis.py" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-xs text-white font-mono py-2 px-3 rounded transition-colors border border-slate-600">
+                  <a href="https://github.com/Thanatos9404/EngageX-The-Science-of-Play/blob/main/data_analysis.py" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-xs text-white font-mono py-2 px-3 rounded transition-colors border border-slate-600">
                     <span className="material-symbols-outlined text-sm">code</span> Verify Raw Logic
                   </a>
-                  <a href="https://colab.research.google.com/github/theyashvardhan/engagex/blob/main/frontend/public/EngageX_Analysis.ipynb" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-secondary/10 hover:bg-secondary/20 text-xs text-secondary font-mono py-2 px-3 rounded transition-colors border border-secondary/30">
+                  <a href="https://colab.research.google.com/github/Thanatos9404/EngageX-The-Science-of-Play/blob/main/frontend/public/EngageX_Analysis.ipynb" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-secondary/10 hover:bg-secondary/20 text-xs text-secondary font-mono py-2 px-3 rounded transition-colors border border-secondary/30">
                     <span className="material-symbols-outlined text-sm">terminal</span> Run Full Analysis (Colab)
                   </a>
                 </div>
