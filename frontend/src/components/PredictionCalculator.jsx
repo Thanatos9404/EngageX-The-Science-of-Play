@@ -40,10 +40,8 @@ function simulateEngagement(price, dlcCount, releaseYear, metacritic) {
 }
 
 export default function PredictionCalculator({ apiUrl }) {
-  const [price, setPrice] = useState(20);
-  const [dlcCount, setDlcCount] = useState(0);
-  const [releaseYear, setReleaseYear] = useState(new Date().getFullYear());
-  const [metacritic, setMetacritic] = useState(75);
+  // Use uncontrolled form state instead of React state for inputs to eliminate ANY stale closure risk
+  const formRef = React.useRef(null);
 
   const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -52,11 +50,19 @@ export default function PredictionCalculator({ apiUrl }) {
 
   const handlePredict = async (e) => {
     e.preventDefault();
+    if (!formRef.current) return;
+
     setLoading(true);
     setError(null);
     setPrediction(null);
 
-    console.log("Predictor Inputs:", { price: Number(price), dlc: Number(dlcCount), year: Number(releaseYear), meta: Number(metacritic) });
+    // Read directly from the DOM elements at the exact moment of execution
+    const currentPrice = Number(formRef.current.price.value);
+    const currentDlc = Number(formRef.current.dlc.value);
+    const currentYear = Number(formRef.current.year.value);
+    const currentMeta = Number(formRef.current.meta.value);
+
+    console.log("Predictor Inputs:", { price: currentPrice, dlc: currentDlc, year: currentYear, meta: currentMeta });
 
     // Try live API first (with 8s timeout to handle cold starts)
     const controller = new AbortController();
@@ -67,10 +73,10 @@ export default function PredictionCalculator({ apiUrl }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          price: Number(price),
-          dlc_count: Number(dlcCount),
-          release_year: Number(releaseYear),
-          metacritic_score: Number(metacritic)
+          price: currentPrice,
+          dlc_count: currentDlc,
+          release_year: currentYear,
+          metacritic_score: currentMeta
         }),
         signal: controller.signal
       });
@@ -80,6 +86,7 @@ export default function PredictionCalculator({ apiUrl }) {
         const data = await res.json();
         setPrediction(data.predicted_engagement);
         setSource('live');
+        setLoading(false);
         return;
       }
     } catch (_) {
@@ -88,16 +95,9 @@ export default function PredictionCalculator({ apiUrl }) {
     clearTimeout(timeout);
 
     // Client-side simulation fallback
-    const simScore = simulateEngagement(Number(price), Number(dlcCount), Number(releaseYear), Number(metacritic));
+    const simScore = simulateEngagement(currentPrice, currentDlc, currentYear, currentMeta);
     setPrediction(simScore);
     setSource('sim');
-    setLoading(false);
-    return;
-  };
-
-  // Must set loading false after async operations complete
-  const handleSubmit = async (e) => {
-    await handlePredict(e);
     setLoading(false);
   };
 
@@ -114,45 +114,45 @@ export default function PredictionCalculator({ apiUrl }) {
         Adjust the hypothetical launch parameters below to predict baseline player retention using our trained Random Forest Regressor.
       </p>
 
-      <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+      <form ref={formRef} onSubmit={handlePredict} className="space-y-6 relative z-10">
         <div className="grid grid-cols-2 gap-6">
           <div>
             <label className="block text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">Price Point ($)</label>
             <input
+              name="price"
               type="number"
               min="0" max="150" step="0.5"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              defaultValue="20"
               className="w-full bg-slate-800/50 border border-slate-700 text-white rounded p-3 focus:outline-none focus:border-accent-green transition"
             />
           </div>
           <div>
             <label className="block text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">DLC Packages</label>
             <input
+              name="dlc"
               type="number"
               min="0" max="250"
-              value={dlcCount}
-              onChange={(e) => setDlcCount(e.target.value)}
+              defaultValue="0"
               className="w-full bg-slate-800/50 border border-slate-700 text-white rounded p-3 focus:outline-none focus:border-accent-green transition"
             />
           </div>
           <div>
             <label className="block text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">Target Metacritic</label>
             <input
+              name="meta"
               type="number"
               min="10" max="100"
-              value={metacritic}
-              onChange={(e) => setMetacritic(e.target.value)}
+              defaultValue="75"
               className="w-full bg-slate-800/50 border border-slate-700 text-white rounded p-3 focus:outline-none focus:border-accent-green transition"
             />
           </div>
           <div>
             <label className="block text-xs font-mono text-slate-500 uppercase tracking-widest mb-2">Release Year</label>
             <input
+              name="year"
               type="number"
               min="2010" max="2030"
-              value={releaseYear}
-              onChange={(e) => setReleaseYear(e.target.value)}
+              defaultValue={new Date().getFullYear()}
               className="w-full bg-slate-800/50 border border-slate-700 text-white rounded p-3 focus:outline-none focus:border-accent-green transition"
             />
           </div>
