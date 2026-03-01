@@ -58,14 +58,56 @@ function App() {
         </div>
 
         <nav className="flex flex-col gap-6 text-sm font-bold uppercase tracking-wide">
-          <a href="#hero" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Verdict</a>
-          <a href="#aha" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> The Hidden Split</a>
-          <a href="#survival" className="text-slate-400 hover:text-secondary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Why Games Refuse to Die</a>
-          <a href="#comparisons" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Economics (Level 02)</a>
-          <a href="#calculator" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> DL Models</a>
-          <a href="#ethics" className="text-slate-400 hover:text-red-500 transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Volatility (Limits)</a>
-          <a href="#summary" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Player Impact</a>
-          <a href="#methodology" className="text-slate-400 hover:text-primary transition-colors flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-slate-700"></span> Methodology</a>
+          <ul className="space-y-4">
+            <li className={`flex items-center gap-3 transition-colors ${activeSection === 'hero' ? 'text-white' : 'text-slate-500 hover:text-slate-300'}`}>
+              <a href="#hero" className="flex items-center gap-3 group">
+                <span className={`w-2 h-2 rounded-full ${activeSection === 'hero' ? 'bg-primary shadow-[0_0_10px_#06f9f9]' : 'bg-slate-600 group-hover:bg-slate-400'}`}></span>
+                <span className="font-mono text-xs tracking-widest uppercase truncate">Verdict</span>
+              </a>
+            </li>
+            <li className={`flex items-center gap-3 transition-colors ${activeSection === 'aha' ? 'text-white' : 'text-slate-500 hover:text-slate-300'}`}>
+              <a href="#aha" className="flex items-center gap-3 group">
+                <span className={`w-2 h-2 rounded-full ${activeSection === 'aha' ? 'bg-primary shadow-[0_0_10px_#06f9f9]' : 'bg-slate-600 group-hover:bg-slate-400'}`}></span>
+                <span className="font-mono text-xs tracking-widest uppercase truncate">Lvl 01: The Hidden Split</span>
+              </a>
+            </li>
+            <li className={`flex items-center gap-3 transition-colors ${activeSection === 'survival' ? 'text-white' : 'text-slate-500 hover:text-slate-300'}`}>
+              <a href="#survival" className="flex items-center gap-3 group">
+                <span className={`w-2 h-2 rounded-full ${activeSection === 'survival' ? 'bg-accent-green shadow-[0_0_10px_#46E3B7]' : 'bg-slate-600 group-hover:bg-slate-400'}`}></span>
+                <span className="font-mono text-xs tracking-widest uppercase truncate">Lvl 02: Survival Decay</span>
+              </a>
+            </li>
+            <li className={`flex items-center gap-3 transition-colors ${activeSection === 'comparisons' ? 'text-white' : 'text-slate-500 hover:text-slate-300'}`}>
+              <a href="#comparisons" className="flex items-center gap-3 group">
+                <span className={`w-2 h-2 rounded-full ${activeSection === 'comparisons' ? 'bg-accent-green shadow-[0_0_10px_#46E3B7]' : 'bg-slate-600 group-hover:bg-slate-400'}`}></span>
+                <span className="font-mono text-xs tracking-widest uppercase truncate">Lvl 03: Economics</span>
+              </a>
+            </li>
+            <li className={`flex items-center gap-3 transition-colors ${activeSection === 'ethics' ? 'text-white' : 'text-slate-500 hover:text-slate-300'}`}>
+              <a href="#ethics" className="flex items-center gap-3 group">
+                <span className={`w-2 h-2 rounded-full ${activeSection === 'ethics' ? 'bg-secondary shadow-[0_0_10px_#f472b6]' : 'bg-slate-600 group-hover:bg-slate-400'}`}></span>
+                <span className="font-mono text-xs tracking-widest uppercase truncate">Lvl 04: Volatility</span>
+              </a>
+            </li>
+            <li className={`flex items-center gap-3 transition-colors ${activeSection === 'calculator' ? 'text-white' : 'text-slate-500 hover:text-slate-300'}`}>
+              <a href="#calculator" className="flex items-center gap-3 group">
+                <span className={`w-2 h-2 rounded-full ${activeSection === 'calculator' ? 'bg-primary shadow-[0_0_10px_#06f9f9]' : 'bg-slate-600 group-hover:bg-slate-400'}`}></span>
+                <span className="font-mono text-xs tracking-widest uppercase truncate">DL Models</span>
+              </a>
+            </li>
+            <li className={`flex items-center gap-3 transition-colors ${activeSection === 'summary' ? 'text-white' : 'text-slate-500 hover:text-slate-300'}`}>
+              <a href="#summary" className="flex items-center gap-3 group">
+                <span className={`w-2 h-2 rounded-full ${activeSection === 'summary' ? 'bg-primary shadow-[0_0_10px_#06f9f9]' : 'bg-slate-600 group-hover:bg-slate-400'}`}></span>
+                <span className="font-mono text-xs tracking-widest uppercase truncate">Player Impact</span>
+              </a>
+            </li>
+            <li className={`flex items-center gap-3 transition-colors ${activeSection === 'methodology' ? 'text-white' : 'text-slate-500 hover:text-slate-300'}`}>
+              <a href="#methodology" className="flex items-center gap-3 group">
+                <span className={`w-2 h-2 rounded-full ${activeSection === 'methodology' ? 'bg-primary shadow-[0_0_10px_#06f9f9]' : 'bg-slate-600 group-hover:bg-slate-400'}`}></span>
+                <span className="font-mono text-xs tracking-widest uppercase truncate">Methodology</span>
+              </a>
+            </li>
+          </ul>
         </nav>
 
         <div className="mt-auto">

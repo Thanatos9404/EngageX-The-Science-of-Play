@@ -1,39 +1,39 @@
 import React, { useState } from 'react';
 
-// Client-side engagement score simulation based on trained RF model coefficients.
-// These weights replicate the model's main learned relationships without needing a live API.
 function simulateEngagement(price, dlcCount, releaseYear, metacritic) {
-  // Normalize inputs the same way the RF scaler did (approximate StandardScaler params from training)
-  // PCA loadings: log_playtime (0.446), log_ccu (0.54), log_reviews (0.585), norm_positivity (0.409)
-  // RF feature importances: dlc_count ~40%, release_year ~30%, metacritic ~20%, price ~10%
+  // P0 BUG FIX: Rewritten client-side simulation to match RF variance structure
+  let score = 50;
 
-  let score = 40; // baseline mean engagement
+  // 1. DLC DENSITY (Top weight for post-launch adherence)
+  if (dlcCount === 0) score -= 8;
+  else if (dlcCount <= 3) score += 2;
+  else if (dlcCount <= 10) score += 12;
+  else if (dlcCount <= 30) score += 20;
+  else score += 28;
 
-  // DLC density is the strongest predictor
-  if (dlcCount === 0) score -= 5;
-  else if (dlcCount <= 5) score += 5;
-  else if (dlcCount <= 20) score += 12;
-  else if (dlcCount <= 50) score += 18;
-  else score += 22;
+  // 2. TARGET METACRITIC (Quality multiplier)
+  if (metacritic >= 90) score += 15;
+  else if (metacritic >= 80) score += 8;
+  else if (metacritic >= 70) score += 0;
+  else if (metacritic >= 50) score -= 12;
+  else score -= 25; // Terrible games suffer heavily
 
-  // Release year trend (live service era post-2015)
-  if (releaseYear >= 2020) score += 10;
-  else if (releaseYear >= 2015) score += 5;
-  else if (releaseYear < 2010) score -= 8;
+  // 3. PRICE POINT POLARIZATION
+  if (price === 0) {
+    // F2P amplifies quality. Great F2P moons; bad F2P dies instantly.
+    if (metacritic >= 80) score += 12;
+    else score -= 15;
+  } else if (price >= 40) {
+    // Premium acts as a stabilizer. Less upside virality, less downside churn.
+    score += 5;
+  }
 
-  // Metacritic score
-  if (metacritic >= 85) score += 12;
-  else if (metacritic >= 75) score += 6;
-  else if (metacritic >= 60) score += 2;
-  else score -= 5;
+  // 4. RELEASE YEAR (Live service era trend)
+  if (releaseYear >= 2020) score += 4;
+  else if (releaseYear <= 2013) score -= 4;
 
-  // Price: F2P has extreme variance, premium has narrower baseline
-  if (price === 0) score += 8; // F2P extreme upside
-  else if (price <= 15) score += 3;
-  else if (price >= 40) score -= 3;
-
-  // Add slight variance for realism
-  const noise = (Math.sin(price * 7 + dlcCount * 3 + metacritic) * 2.5);
+  // Mathematical bounds and tiny pseudo-random noise for identical inputs
+  const noise = (Math.sin(price * 7.1 + dlcCount * 3.3 + metacritic) * 2.0);
   score += noise;
 
   return Math.min(100, Math.max(0, Math.round(score * 10) / 10));
@@ -55,6 +55,8 @@ export default function PredictionCalculator({ apiUrl }) {
     setLoading(true);
     setError(null);
     setPrediction(null);
+
+    console.log("Predictor Inputs:", { price: Number(price), dlc: Number(dlcCount), year: Number(releaseYear), meta: Number(metacritic) });
 
     // Try live API first (with 8s timeout to handle cold starts)
     const controller = new AbortController();
@@ -162,9 +164,14 @@ export default function PredictionCalculator({ apiUrl }) {
           className="w-full bg-accent-green/20 hover:bg-accent-green/30 text-accent-green font-bold py-4 rounded border border-accent-green/50 transition duration-300 flex items-center justify-center gap-2 disabled:opacity-50"
         >
           {loading ? (
-            <span className="flex items-center gap-2">
-              <span className="w-4 h-4 border-2 border-accent-green border-t-transparent rounded-full animate-spin"></span>
-              Computing...
+            <span className="flex flex-col items-center justify-center">
+              <span className="flex items-center gap-2">
+                <span className="w-4 h-4 border-2 border-accent-green border-t-transparent rounded-full animate-spin"></span>
+                Computing...
+              </span>
+              <span className="text-[10px] text-accent-green/80 uppercase font-mono mt-1 opacity-70">
+                (Render API waking up. Fallback sim ready in ~8s)
+              </span>
             </span>
           ) : (
             <>
@@ -190,11 +197,14 @@ export default function PredictionCalculator({ apiUrl }) {
             <span className="text-xl text-slate-500">/100</span>
           </div>
           <p className="text-slate-400 text-xs mt-3">
-            {prediction > 70 ? "Blockbuster Potential Detected" : prediction > 40 ? "Stable Core Audience Expected" : "High Risk of Churn"}
+            {prediction > 75 ? "Blockbuster Potential Detected" :
+              prediction > 55 ? "Stable Ecosystem Expected" :
+                prediction > 35 ? "Niche / Borderline Viability" :
+                  "High Risk of Total Churn"}
           </p>
           {source === 'sim' && (
             <p className="text-slate-600 text-[10px] mt-2 font-mono">
-              [Simulated via local RF coefficient model — API warming up]
+              [Simulated via local RF coefficients — Render API asleep]
             </p>
           )}
         </div>

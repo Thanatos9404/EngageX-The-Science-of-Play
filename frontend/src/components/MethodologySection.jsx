@@ -17,7 +17,7 @@ const MethodologySection = ({ data }) => {
               <div>
                 <h3 className="text-xl font-bold text-white mb-2">Data Preprocessing & Cleaning</h3>
                 <p className="text-slate-400 leading-relaxed text-sm">
-                  Processed {data?.methodology?.dataset_claim || "over 8,000 highly structured records"}. Idle-inflation bots and achievement-farming games (mean playtime &gt; 10x median) were aggressively filtered out.
+                  Processed {data?.methodology?.dataset_claim || "over 8,000 highly structured records"} Idle-inflation bots and achievement-farming games (mean playtime &gt; 10x median) were aggressively filtered out.
                 </p>
               </div>
             </div>

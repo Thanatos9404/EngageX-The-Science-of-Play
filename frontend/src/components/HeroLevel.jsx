@@ -22,7 +22,7 @@ const HeroLevel = ({ data }) => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
             <div className="bg-slate-900/50 border border-slate-700 p-4 rounded backdrop-blur-sm">
-              <div className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Data Points</div>
+              <div className="text-secondary font-mono tracking-widest text-sm mb-1 opacity-80">GAMES ANALYZED: 8,010 RAW | 7,891 FILTERED</div>
               <div className="text-2xl text-white font-mono font-bold">~2.5M</div>
             </div>
             <div className="bg-slate-900/50 border border-slate-700 p-4 rounded backdrop-blur-sm">
@@ -35,14 +35,16 @@ const HeroLevel = ({ data }) => {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+          <div className="mt-8 flex flex-col sm:flex-row gap-6 items-start sm:items-center relative pb-10">
             <a href="#aha" className="group relative px-8 py-4 bg-primary text-background-dark text-lg font-black uppercase tracking-widest hover:bg-white transition-all duration-300 hud-border shadow-[4px_4px_0px_#0f2323] hover:shadow-[6px_6px_0px_rgba(6,249,249,0.5)] hover:-translate-y-1">
               <span className="flex items-center gap-3">
                 Start Exploration
                 <ArrowDown className="group-hover:translate-y-1 transition-transform" />
               </span>
             </a>
-            <span className="text-slate-500 text-sm font-mono animate-pulse blink">&lt; SCROLL TO BEGIN &gt;</span>
+            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-slate-500 font-mono text-xs tracking-[0.3em] font-bold animate-pulse whitespace-nowrap">
+              ↓ SCROLL TO BEGIN ↓
+            </div>
           </div>
         </div>
 

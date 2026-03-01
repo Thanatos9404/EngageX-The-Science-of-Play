@@ -6,7 +6,7 @@ const Level2Comparisons = ({ data, apiUrl }) => {
     <section className="min-h-screen relative px-6 py-20 bg-background-dark">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center gap-4 mb-12 flex-row-reverse">
-          <span className="text-accent-green font-mono text-xl font-bold">[ LEVEL 02 ]</span>
+          <span className="text-accent-green font-mono text-xl font-bold">[ LEVEL 03 ]</span>
           <div className="h-px bg-accent-green/30 flex-grow"></div>
           <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-wider text-right">The Economics of Attention</h2>
         </div>
@@ -64,9 +64,11 @@ const Level2Comparisons = ({ data, apiUrl }) => {
               <p className="text-slate-400 text-sm">
                 Expanding the core loop: By looking at the regression, we observe a distinct positive correlation between DLC density and player retention.
               </p>
-              <div className="text-sm font-mono text-accent-green bg-accent-green/10 p-3 rounded border border-accent-green/20">
-                {data?.dlc_insight || "Loading DLC metrics..."}
-              </div>
+              {data?.dlc_insight && (
+                <div className="text-sm font-mono text-accent-green bg-accent-green/10 p-3 rounded border border-accent-green/20">
+                  {data.dlc_insight}
+                </div>
+              )}
             </div>
           </div>
         </div>

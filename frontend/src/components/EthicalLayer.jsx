@@ -8,12 +8,25 @@ const EthicalLayer = ({ data }) => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex items-center gap-4 mb-16">
-          <span className="text-red-500 font-mono text-xl font-bold">[ LEVEL_04 ]</span>
+          <span className="text-secondary font-mono text-xl font-bold">[ LEVEL 04 ]</span>
           <div className="h-px bg-red-900/50 flex-grow"></div>
           <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-wider">The Cost of Retention</h2>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="bg-slate-900 border border-slate-700 p-8 rounded-xl xl:col-span-1 border-t-secondary relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full blur-2xl"></div>
+            <h3 className="text-xl font-bold mb-4 font-mono text-slate-300 tracking-wider">FATIGUE TAX: <span className="text-secondary">REJECTED</span></h3>
+            <p className="text-slate-400 mb-6 leading-relaxed">
+              The "inevitable fatigue" narrative assumes highly engaging games suffer steep community backlash. By ranking games into Engagement Quartiles (Q1=Low, Q4=Extreme), we tested if negative sentiment rises with engagement.
+            </p>
+            <p className="text-slate-400 mb-6 leading-relaxed">
+              <strong className="text-white text-sm">Why the Q1 peak?</strong> The bar chart shows Q1 (low-engagement titles) actually carries the highest negative review proportion. This is because Q1 is disproportionately populated by technically broken, abandoned, or underdelivered games that never achieved escape velocity.
+            </p>
+            <p className="text-secondary font-mono text-sm p-4 bg-secondary/10 border border-secondary/20 rounded">
+              {data?.ethical_insight?.text || "Loading Kruskal-Wallis text..."}
+            </p>
+          </div>
           <div>
             <h3 className="text-2xl font-bold text-white mb-6">Are Engagement Mechanics Creating Fatigue?</h3>
             <p className="text-slate-300 leading-relaxed mb-6">

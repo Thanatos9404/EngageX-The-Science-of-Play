@@ -285,7 +285,10 @@ def generate_correlation_and_scatter(df):
     def extract_first_genre(genres_str):
         if pd.isna(genres_str): return "Unknown"
         genres = str(genres_str).replace('[', '').replace(']', '').replace("'", '').split(',')
-        return genres[0].strip() if genres else "Unknown"
+        genre = genres[0].strip() if genres else "Unknown"
+        # Apply F2P alias to prevent truncation
+        if genre == "Free to Play": return "F2P"
+        return genre
         
     df['primary_genre'] = df['genres'].apply(extract_first_genre)
     genre_stats = df.groupby('primary_genre').agg(
@@ -572,7 +575,16 @@ def robust_ml_prediction(df):
         'CI': ci_imp
     }).sort_values(by='Importance', ascending=True) # Ascending for horizontal bar chart
     
-    fig_feat = px.bar(importance_df, x='Importance', y='Feature', orientation='h', error_x='CI',
+    # Map feature names to more readable labels
+    feature_label_map = {
+        'price': 'Price Point',
+        'release_year': 'Release Year',
+        'metacritic_score': 'Target Metacritic',
+        'dlc_count': 'DLC Count'
+    }
+    importance_df['Feature_Label'] = importance_df['Feature'].map(feature_label_map)
+
+    fig_feat = px.bar(importance_df, x='Importance', y='Feature_Label', orientation='h', error_x='CI',
                       title="Random Forest Feature Importances (95% CI via Bootstrap)",
                       color='Importance', color_continuous_scale="viridis")
     fig_feat.update_layout(xaxis_title="Gini Importance", yaxis_title="",
@@ -594,6 +606,10 @@ def generate_top_20(df):
     top_20 = df.sort_values(by='engagement_score', ascending=False).head(20)
     # create safe list of dicts
     top_list = top_20[['name', 'release_year', 'engagement_score', 'average_playtime_forever', 'num_reviews_total']].copy()
+    
+    # Bug 3 FIX: Shorten Rainbow Six Siege name to prevent two-line rendering break
+    top_list['name'] = top_list['name'].str.replace("Tom Clancy's Rainbow Six® Siege", "Rainbow Six® Siege", regex=False)
+    
     top_list['engagement_score'] = top_list['engagement_score'].round(1)
     
     insights_data['top_20_games'] = top_list.to_dict('records')

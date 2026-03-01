@@ -37,7 +37,10 @@ const SummaryScreen = ({ data, apiUrl }) => {
                                 <span className="text-accent-green font-bold">»</span> <span className="text-white font-medium">Fatigue Rejected:</span> High engagement intensity does not produce systematic community fatigue. Sentiment degradation is not structurally driven by aggressive retention mechanics.
                             </li>
                             <li className="flex items-start gap-3">
-                                <span className="text-accent-green font-bold">»</span> <span className="text-white font-medium">Predictability:</span> ML models indicate post-launch expansions are the highest-weight feature in extending lifetime value.
+                                <span className="text-accent-green font-bold">»</span>
+                                <p className="text-slate-300 text-sm">
+                                    <strong>Predictability:</strong> ML models indicate structural baseline variables (Price Point, Target Metacritic, Release Era) are the highest-weight features in predicting long-term retention potential, overriding post-launch community sentiment.
+                                </p>
                             </li>
                         </ul>
                     </div>
@@ -58,17 +61,15 @@ const SummaryScreen = ({ data, apiUrl }) => {
                     </div>
                 </div>
 
-                <div className="flex justify-center mt-12 mb-12">
+                <div className="mt-12 flex justify-center">
                     <a
-                        href="/EngageX_Analysis.ipynb"
-                        download
-                        className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-slate-800 border-2 border-primary rounded hover:bg-primary/20 transition-all duration-300 overflow-hidden"
+                        href="https://colab.research.google.com/github/Thanatos9404/EngageX-The-Science-of-Play/blob/main/frontend/public/EngageX_Analysis.ipynb"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-bold uppercase tracking-wider hover:bg-slate-200 transition-colors"
                     >
-                        <div className="absolute inset-0 w-0 bg-primary transition-all duration-300 ease-out group-hover:w-full opacity-20"></div>
-                        <span className="flex items-center gap-3 relative z-10 font-mono tracking-widest text-sm uppercase">
-                            <span className="material-symbols-outlined group-hover:animate-bounce">terminal</span>
-                            Download Full Notebook
-                        </span>
+                        <span className="material-symbols-outlined">data_object</span>
+                        Download Full Notebook
                     </a>
                 </div>
             </div>

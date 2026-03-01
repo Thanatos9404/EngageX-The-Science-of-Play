@@ -9,7 +9,7 @@ const Level3AhaMoment = ({ data, apiUrl }) => {
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="flex items-center gap-4 mb-16">
-          <span className="text-accent-green font-mono text-xl font-bold">[ LEVEL_03 ]</span>
+          <span className="text-primary font-mono text-xl font-bold">[ LEVEL 01 ]</span>
           <div className="h-px bg-slate-700 flex-grow"></div>
           <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-wider">The Insight</h2>
         </div>
