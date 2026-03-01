@@ -18,6 +18,24 @@ function App() {
   const [insights, setInsights] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeSection, setActiveSection] = useState('hero');
+
+  useEffect(() => {
+    if (loading) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.target.id) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -60% 0px' }
+    );
+    const sections = document.querySelectorAll('section');
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [loading]);
 
   useEffect(() => {
     const fetchInsights = async () => {
